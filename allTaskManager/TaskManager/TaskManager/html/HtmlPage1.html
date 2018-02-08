@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../rhui/css/rhui.min.css" rel="stylesheet" />
+    <link href="../bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../fullcalendar-3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href='../fullcalendar-3.4.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='../fullcalendar-3.4.0/lib/moment.min.js'></script>
+    <script src='../fullcalendar-3.4.0/lib/jquery.min.js'></script>
+    <script src='../fullcalendar-3.4.0/lib/jquery-ui.min.js'></script>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src='../fullcalendar-3.4.0/fullcalendar.min.js'></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../rhui/js/rhui-all.min.js"></script>
+
+    <style>
+        .page-content {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            margin-left: 0;
+            margin-right: 0;
+            border: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-radius: 0;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+            min-height: 45px;
+            position: relative;
+            background: #438eb9;
+        }
+
+        .ace-nav > li {
+            line-height: 31px;
+            height: 51px;
+            border-left: 1px solid #DDD;
+            padding: 0;
+            position: relative;
+            float: left !important;
+        }
+
+        .light-blue {
+            background-color: deepskyblue;
+        }
+
+        .purple {
+            background-color: purple;
+        }
+
+        .grey {
+            background-color: #696969;
+        }
+
+        .green {
+            background-color: mediumseagreen;
+        }
+
+        .form_input{
+            width:150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar navbar-default" id="navbar">
+
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand" href="#">
+                    <small style="color:white;padding-left:10px;">
+                        <i class="glyphicon glyphicon-leaf"></i>
+                    </small>
+                </a>
+            </div>
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+
+                    <li class="" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-search" style="color:white"></i>
+                        </a>
+                    </li>
+
+                    <li class="grey active" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-tasks" style="color:white"></i>
+                            <span class="badge badge-grey">我的日程</span>
+                        </a>
+
+                    </li>
+
+                    <li class="purple">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-bell" style="color:white;"></i>
+                            <span class="badge badge-important" style="background-color:palevioletred">班级日程</span>
+                        </a>
+
+                    </li>
+
+                    <li class="green">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-envelope icon-animated-vertical" style="color:white;"></i>
+                            <span class="badge badge-success" style="background-color:lightgreen">课程日程</span>
+                        </a>
+
+                    </li>
+
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" id="dropdownMenu" aria-haspopup="true" aria-expanded="true">
+                            <!--<img class="nav-user-photo" src="/846/other/assets/avatars/user.jpg" alt="Jason's Photo">-->
+                            <span class="user-info" style="color:white">
+                                @{
+                                    if (userLevel == 10 || userLevel == 11)
+                                    {
+                                    <span class="username">@(userName) 老师</span>
+                                    }
+                                    else
+                                    {
+                                    <span class="username">@(userName)</span>
+                                    }
+
+                                }
+                                <small>&nbsp;欢迎 &nbsp;</small>
+                            </span>
+                            <i class="glyphicon glyphicon-chevron-down" style="color:white;font-size:10px"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" aria-labelledby="dropdownMenu">
+                            <li>
+                                <a href="#">
+                                    <i class="icon-cog"></i>
+                                    修改密码
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="/Login/Login/Index">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="cl"></div>
+        </div>
+    </div>
+
+    <div style="margin:40px;">
+
+        <div class="input-group" style="width:70%;margin:0 15%" >
+            <span class="input-group-btn">
+                <select class="form-control" style="width:110px;">
+                    <option>我的日程</option>
+                    <option>班级日程</option>
+                    <option>课程日程</option>
+                </select>
+            </span>
+            <span class="input-group-btn">
+                <input class="form-control form_datetime" style="width:100px;" id="datetimepicker"/>
+            </span>
+            <input type="text" class="form-control" placeholder="请输入字段名" />
+            <span class="input-group-btn">
+                &nbsp;&nbsp;
+                <button class="btn btn-info btn-search">查找</button>
+            </span>
+        </div>
+
+        <div class="panel panel-primary" style="margin:40px 10%;width:80%;">
+            <div style="margin:20px;">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>日程标题</th>
+                            <th>日程类型</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>提醒时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>日程标题</th>
+                            <th>日程类型</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>提醒时间</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>日程标题</th>
+                            <th>日程类型</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>提醒时间</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>日程标题</th>
+                            <th>日程类型</th>
+                            <th>开始时间</th>
+                            <th>结束时间</th>
+                            <th>提醒时间</th>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+           
+                          
+        </div>
+
+    </div>
+
+      
+    <script>
+
+        $(".form_datetime").datetimepicker({
+            defaultDate: new Date(),
+            minView:"month",
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            todayBtn: true,
+            pickerPosition: "bottom-left"
+        });
+    </script>
+
+</body>
+</html>

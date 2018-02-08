@@ -1,0 +1,1051 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{103BEF86-8A95-4530-8B61-736667EBFAC9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TaskManager</RootNamespace>
+    <AssemblyName>TaskManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrap-3.3.0-dist\dist\css\bootstrap-theme.css" />
+    <Content Include="bootstrap-3.3.0-dist\dist\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap-3.3.0-dist\dist\css\bootstrap.css" />
+    <Content Include="bootstrap-3.3.0-dist\dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-3.3.0-dist\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap-3.3.0-dist\dist\js\bootstrap.js" />
+    <Content Include="bootstrap-3.3.0-dist\dist\js\bootstrap.min.js" />
+    <Content Include="bootstrap-3.3.0-dist\dist\js\npm.js" />
+    <Content Include="bootstrap-datetimepicker-master\.gitattributes" />
+    <Content Include="bootstrap-datetimepicker-master\.gitignore" />
+    <Content Include="bootstrap-datetimepicker-master\css\bootstrap-datetimepicker.css" />
+    <Content Include="bootstrap-datetimepicker-master\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="bootstrap-datetimepicker-master\Gruntfile.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\bootstrap-datetimepicker.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ar.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.az.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.bg.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.bn.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ca.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.cs.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.da.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.de.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ee.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.el.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.es.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.fi.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.fr.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.he.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.hr.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.hu.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.hy.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.id.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.is.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.it.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ja.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ka.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ko.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.lt.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.lv.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ms.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.nb.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.nl.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.no.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.pl.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.pt-BR.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.pt.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ro.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.rs-latin.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.rs.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ru.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sk.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sl.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sv.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sw.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.th.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.tr.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ua.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.uk.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.zh-TW.js" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\bootstrap\js\bootstrap.js" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\bootstrap\js\bootstrap.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\index.html" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v2\jquery\jquery-1.8.3.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\js\bootstrap.js" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\js\bootstrap.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\index.html" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\jquery\jquery-1.8.3.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_day.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_day_meridian.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_decade.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_full.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_hour.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_hour_meridian.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_month.png" />
+    <Content Include="bootstrap-datetimepicker-master\screenshot\standard_year.png" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\coverage.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\jquery-1.7.1.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\mock.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\qunit-logging.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\qunit.css" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\qunit.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\assets\utils.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\run-qunit.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\component.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\events.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\formats.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\inline.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\keyboard_navigation\2011.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\keyboard_navigation\2012.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\keyboard_navigation\all.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\mouse_navigation\2011.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\mouse_navigation\2012.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\mouse_navigation\all.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\suites\options.js" />
+    <Content Include="bootstrap-datetimepicker-master\tests\tests.html" />
+    <Content Include="bootstrap-datetimepicker-master\tests\tests.min.html" />
+    <Content Include="bootstrap-datetimepicker-master\tests\_coverage.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fullcalendar-3.4.0\CHANGELOG.txt" />
+    <Content Include="fullcalendar-3.4.0\CONTRIBUTING.txt" />
+    <Content Include="fullcalendar-3.4.0\demos\agenda-views.html" />
+    <Content Include="fullcalendar-3.4.0\demos\background-events.html" />
+    <Content Include="fullcalendar-3.4.0\demos\basic-views.html" />
+    <Content Include="fullcalendar-3.4.0\demos\default.html" />
+    <Content Include="fullcalendar-3.4.0\demos\external-dragging.html" />
+    <Content Include="fullcalendar-3.4.0\demos\gcal.html" />
+    <Content Include="fullcalendar-3.4.0\demos\json.html" />
+    <Content Include="fullcalendar-3.4.0\demos\list-views.html" />
+    <Content Include="fullcalendar-3.4.0\demos\locales.html" />
+    <Content Include="fullcalendar-3.4.0\demos\selectable.html" />
+    <Content Include="fullcalendar-3.4.0\demos\theme.html" />
+    <Content Include="fullcalendar-3.4.0\demos\timezones.html" />
+    <Content Include="fullcalendar-3.4.0\demos\week-numbers.html" />
+    <Content Include="fullcalendar-3.4.0\fullcalendar.css" />
+    <Content Include="fullcalendar-3.4.0\fullcalendar.js" />
+    <Content Include="fullcalendar-3.4.0\fullcalendar.min.css" />
+    <Content Include="fullcalendar-3.4.0\fullcalendar.min.js" />
+    <Content Include="fullcalendar-3.4.0\fullcalendar.print.css" />
+    <Content Include="fullcalendar-3.4.0\fullcalendar.print.min.css" />
+    <Content Include="fullcalendar-3.4.0\gcal.js" />
+    <Content Include="fullcalendar-3.4.0\gcal.min.js" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="fullcalendar-3.4.0\lib\cupertino\jquery-ui.min.css" />
+    <Content Include="fullcalendar-3.4.0\lib\jquery-ui.min.js" />
+    <Content Include="fullcalendar-3.4.0\lib\jquery.min.js" />
+    <Content Include="fullcalendar-3.4.0\lib\moment.min.js" />
+    <Content Include="fullcalendar-3.4.0\LICENSE.txt" />
+    <Content Include="fullcalendar-3.4.0\locale-all.js" />
+    <Content Include="fullcalendar-3.4.0\locale\af.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar-dz.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar-kw.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar-ly.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar-ma.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar-sa.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar-tn.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ar.js" />
+    <Content Include="fullcalendar-3.4.0\locale\bg.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ca.js" />
+    <Content Include="fullcalendar-3.4.0\locale\cs.js" />
+    <Content Include="fullcalendar-3.4.0\locale\da.js" />
+    <Content Include="fullcalendar-3.4.0\locale\de-at.js" />
+    <Content Include="fullcalendar-3.4.0\locale\de-ch.js" />
+    <Content Include="fullcalendar-3.4.0\locale\de.js" />
+    <Content Include="fullcalendar-3.4.0\locale\el.js" />
+    <Content Include="fullcalendar-3.4.0\locale\en-au.js" />
+    <Content Include="fullcalendar-3.4.0\locale\en-ca.js" />
+    <Content Include="fullcalendar-3.4.0\locale\en-gb.js" />
+    <Content Include="fullcalendar-3.4.0\locale\en-ie.js" />
+    <Content Include="fullcalendar-3.4.0\locale\en-nz.js" />
+    <Content Include="fullcalendar-3.4.0\locale\es-do.js" />
+    <Content Include="fullcalendar-3.4.0\locale\es.js" />
+    <Content Include="fullcalendar-3.4.0\locale\et.js" />
+    <Content Include="fullcalendar-3.4.0\locale\eu.js" />
+    <Content Include="fullcalendar-3.4.0\locale\fa.js" />
+    <Content Include="fullcalendar-3.4.0\locale\fi.js" />
+    <Content Include="fullcalendar-3.4.0\locale\fr-ca.js" />
+    <Content Include="fullcalendar-3.4.0\locale\fr-ch.js" />
+    <Content Include="fullcalendar-3.4.0\locale\fr.js" />
+    <Content Include="fullcalendar-3.4.0\locale\gl.js" />
+    <Content Include="fullcalendar-3.4.0\locale\he.js" />
+    <Content Include="fullcalendar-3.4.0\locale\hi.js" />
+    <Content Include="fullcalendar-3.4.0\locale\hr.js" />
+    <Content Include="fullcalendar-3.4.0\locale\hu.js" />
+    <Content Include="fullcalendar-3.4.0\locale\id.js" />
+    <Content Include="fullcalendar-3.4.0\locale\is.js" />
+    <Content Include="fullcalendar-3.4.0\locale\it.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ja.js" />
+    <Content Include="fullcalendar-3.4.0\locale\kk.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ko.js" />
+    <Content Include="fullcalendar-3.4.0\locale\lb.js" />
+    <Content Include="fullcalendar-3.4.0\locale\lt.js" />
+    <Content Include="fullcalendar-3.4.0\locale\lv.js" />
+    <Content Include="fullcalendar-3.4.0\locale\mk.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ms-my.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ms.js" />
+    <Content Include="fullcalendar-3.4.0\locale\nb.js" />
+    <Content Include="fullcalendar-3.4.0\locale\nl-be.js" />
+    <Content Include="fullcalendar-3.4.0\locale\nl.js" />
+    <Content Include="fullcalendar-3.4.0\locale\nn.js" />
+    <Content Include="fullcalendar-3.4.0\locale\pl.js" />
+    <Content Include="fullcalendar-3.4.0\locale\pt-br.js" />
+    <Content Include="fullcalendar-3.4.0\locale\pt.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ro.js" />
+    <Content Include="fullcalendar-3.4.0\locale\ru.js" />
+    <Content Include="fullcalendar-3.4.0\locale\sk.js" />
+    <Content Include="fullcalendar-3.4.0\locale\sl.js" />
+    <Content Include="fullcalendar-3.4.0\locale\sr-cyrl.js" />
+    <Content Include="fullcalendar-3.4.0\locale\sr.js" />
+    <Content Include="fullcalendar-3.4.0\locale\sv.js" />
+    <Content Include="fullcalendar-3.4.0\locale\th.js" />
+    <Content Include="fullcalendar-3.4.0\locale\tr.js" />
+    <Content Include="fullcalendar-3.4.0\locale\uk.js" />
+    <Content Include="fullcalendar-3.4.0\locale\vi.js" />
+    <Content Include="fullcalendar-3.4.0\locale\zh-cn.js" />
+    <Content Include="fullcalendar-3.4.0\locale\zh-tw.js" />
+    <Content Include="Global.asax" />
+    <Content Include="html\HtmlPage1.html" />
+    <Content Include="img\bg_pic1.jpg" />
+    <Content Include="img\logo_school.png" />
+    <Content Include="img\yanzheng.png" />
+    <Content Include="jui\js\dwz.accordion.js" />
+    <Content Include="jui\js\dwz.ajax.js" />
+    <Content Include="jui\js\dwz.alertMsg.js" />
+    <Content Include="jui\js\dwz.barDrag.js" />
+    <Content Include="jui\js\dwz.checkbox.js" />
+    <Content Include="jui\js\dwz.combox.js" />
+    <Content Include="jui\js\dwz.contextmenu.js" />
+    <Content Include="jui\js\dwz.core.js" />
+    <Content Include="jui\js\dwz.cssTable.js" />
+    <Content Include="jui\js\dwz.database.js" />
+    <Content Include="jui\js\dwz.datepicker.js" />
+    <Content Include="jui\js\dwz.dialog.js" />
+    <Content Include="jui\js\dwz.dialogDrag.js" />
+    <Content Include="jui\js\dwz.drag.js" />
+    <Content Include="jui\js\dwz.effects.js" />
+    <Content Include="jui\js\dwz.file.js" />
+    <Content Include="jui\js\dwz.history.js" />
+    <Content Include="jui\js\dwz.navTab.js" />
+    <Content Include="jui\js\dwz.pagination.js" />
+    <Content Include="jui\js\dwz.panel.js" />
+    <Content Include="jui\js\dwz.print.js" />
+    <Content Include="jui\js\dwz.regional.zh.js" />
+    <Content Include="jui\js\dwz.resize.js" />
+    <Content Include="jui\js\dwz.scrollCenter.js" />
+    <Content Include="jui\js\dwz.sortDrag.js" />
+    <Content Include="jui\js\dwz.stable.js" />
+    <Content Include="jui\js\dwz.switchEnv.js" />
+    <Content Include="jui\js\dwz.tab.js" />
+    <Content Include="jui\js\dwz.taskBar.js" />
+    <Content Include="jui\js\dwz.theme.js" />
+    <Content Include="jui\js\dwz.tree.js" />
+    <Content Include="jui\js\dwz.ui.js" />
+    <Content Include="jui\js\dwz.util.date.js" />
+    <Content Include="jui\js\dwz.util.number.js" />
+    <Content Include="jui\js\dwz.validate.method.js" />
+    <Content Include="jui\js\jquery-1.11.3.js" />
+    <Content Include="jui\js\jquery-1.11.3.min.js" />
+    <Content Include="jui\js\jquery-2.1.4.js" />
+    <Content Include="jui\js\jquery-2.1.4.min.js" />
+    <Content Include="jui\js\jquery.bgiframe.js" />
+    <Content Include="jui\js\jquery.cookie.js" />
+    <Content Include="jui\js\jquery.easing.1.3.js" />
+    <Content Include="jui\js\jquery.validate.js" />
+    <Content Include="jui\js\jquery.validate.min.js" />
+    <Content Include="jui\js\speedup.js" />
+    <Content Include="jui\themes\azure\images\accordion\accordion.png" />
+    <Content Include="jui\themes\azure\images\account_info_bg.png" />
+    <Content Include="jui\themes\azure\images\alert\alertpanel.png" />
+    <Content Include="jui\themes\azure\images\alert\alertpanel_icon.png" />
+    <Content Include="jui\themes\azure\images\button\button_s.png" />
+    <Content Include="jui\themes\azure\images\button\imgX.gif" />
+    <Content Include="jui\themes\azure\images\button\imgX.png" />
+    <Content Include="jui\themes\azure\images\dialog\dialogpanel.png" />
+    <Content Include="jui\themes\azure\images\dialog\dialogpanel_icon.png" />
+    <Content Include="jui\themes\azure\images\form\input_bg.png" />
+    <Content Include="jui\themes\azure\images\form\input_bt.png" />
+    <Content Include="jui\themes\azure\images\grid\grid.png" />
+    <Content Include="jui\themes\azure\images\grid\resizeCol.png" />
+    <Content Include="jui\themes\azure\images\grid\tableth.png" />
+    <Content Include="jui\themes\azure\images\header_bg.png" />
+    <Content Include="jui\themes\azure\images\icon.png" />
+    <Content Include="jui\themes\azure\images\layout\taskbar.png" />
+    <Content Include="jui\themes\azure\images\layout\taskbar_control.png" />
+    <Content Include="jui\themes\azure\images\layout\taskbar_icon.png" />
+    <Content Include="jui\themes\azure\images\layout\toggleSidebar.png" />
+    <Content Include="jui\themes\azure\images\listLine.png" />
+    <Content Include="jui\themes\azure\images\menu\menu.png" />
+    <Content Include="jui\themes\azure\images\order_down.gif" />
+    <Content Include="jui\themes\azure\images\order_up.gif" />
+    <Content Include="jui\themes\azure\images\pageHeader_bg.png" />
+    <Content Include="jui\themes\azure\images\panel\panel.png" />
+    <Content Include="jui\themes\azure\images\panel\panel_icon.png" />
+    <Content Include="jui\themes\azure\images\preview.png" />
+    <Content Include="jui\themes\azure\images\progressBar\progressBar_l.gif" />
+    <Content Include="jui\themes\azure\images\progressBar\progressBar_m.gif" />
+    <Content Include="jui\themes\azure\images\progressBar\progressBar_s.gif" />
+    <Content Include="jui\themes\azure\images\search-bg.gif" />
+    <Content Include="jui\themes\azure\images\search-bt.gif" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_c_c.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_c_l.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_c_r.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_f_c.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_f_l.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_f_r.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_h_c.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_h_l.png" />
+    <Content Include="jui\themes\azure\images\shadow\shadow_h_r.png" />
+    <Content Include="jui\themes\azure\images\tabs\tabscontrol.png" />
+    <Content Include="jui\themes\azure\images\tabs\tabspage.png" />
+    <Content Include="jui\themes\azure\images\tabs\tabspage_icon.png" />
+    <Content Include="jui\themes\azure\images\tabs\tabspanel.png" />
+    <Content Include="jui\themes\azure\images\tree\check.png" />
+    <Content Include="jui\themes\azure\images\tree\folder.png" />
+    <Content Include="jui\themes\azure\images\tree\tree.png" />
+    <Content Include="jui\themes\azure\style.css" />
+    <Content Include="jui\themes\css\core.css" />
+    <Content Include="jui\themes\css\ieHack.css" />
+    <Content Include="jui\themes\css\login.css" />
+    <Content Include="jui\themes\css\print.css" />
+    <Content Include="jui\themes\default\images\accordion\accordion.png" />
+    <Content Include="jui\themes\default\images\account_info_bg.png" />
+    <Content Include="jui\themes\default\images\alert\alertpanel.png" />
+    <Content Include="jui\themes\default\images\alert\alertpanel_icon.png" />
+    <Content Include="jui\themes\default\images\button\button_s.png" />
+    <Content Include="jui\themes\default\images\button\imgX.gif" />
+    <Content Include="jui\themes\default\images\button\img_lock.png" />
+    <Content Include="jui\themes\default\images\button\img_reset.png" />
+    <Content Include="jui\themes\default\images\button\toleft.gif" />
+    <Content Include="jui\themes\default\images\button\toleftone.gif" />
+    <Content Include="jui\themes\default\images\button\toright.gif" />
+    <Content Include="jui\themes\default\images\button\torightone.gif" />
+    <Content Include="jui\themes\default\images\dialog\dialogpanel.png" />
+    <Content Include="jui\themes\default\images\dialog\dialogpanel_icon.png" />
+    <Content Include="jui\themes\default\images\form\input_bg.png" />
+    <Content Include="jui\themes\default\images\form\input_bt.png" />
+    <Content Include="jui\themes\default\images\grid\btn_excel.png" />
+    <Content Include="jui\themes\default\images\grid\grid.png" />
+    <Content Include="jui\themes\default\images\grid\resizeCol.png" />
+    <Content Include="jui\themes\default\images\grid\tableth.png" />
+    <Content Include="jui\themes\default\images\header_bg.png" />
+    <Content Include="jui\themes\default\images\icon.png" />
+    <Content Include="jui\themes\default\images\layout\taskbar.png" />
+    <Content Include="jui\themes\default\images\layout\taskbar_control.png" />
+    <Content Include="jui\themes\default\images\layout\taskbar_icon.png" />
+    <Content Include="jui\themes\default\images\layout\toggleSidebar.png" />
+    <Content Include="jui\themes\default\images\listLine.png" />
+    <Content Include="jui\themes\default\images\login_banner.jpg" />
+    <Content Include="jui\themes\default\images\login_bg.png" />
+    <Content Include="jui\themes\default\images\login_content_bg.png" />
+    <Content Include="jui\themes\default\images\login_header_bg.png" />
+    <Content Include="jui\themes\default\images\login_list.png" />
+    <Content Include="jui\themes\default\images\login_logo.gif" />
+    <Content Include="jui\themes\default\images\login_sub.png" />
+    <Content Include="jui\themes\default\images\login_title.png" />
+    <Content Include="jui\themes\default\images\logo.png" />
+    <Content Include="jui\themes\default\images\menu\menu.png" />
+    <Content Include="jui\themes\default\images\order_down.gif" />
+    <Content Include="jui\themes\default\images\order_up.gif" />
+    <Content Include="jui\themes\default\images\pageHeader_bg.png" />
+    <Content Include="jui\themes\default\images\panel\panel.png" />
+    <Content Include="jui\themes\default\images\panel\panel_icon.png" />
+    <Content Include="jui\themes\default\images\progressBar\progressBar_l.gif" />
+    <Content Include="jui\themes\default\images\progressBar\progressBar_m.gif" />
+    <Content Include="jui\themes\default\images\progressBar\progressBar_s.gif" />
+    <Content Include="jui\themes\default\images\search-bg.gif" />
+    <Content Include="jui\themes\default\images\search-bt.gif" />
+    <Content Include="jui\themes\default\images\shadow\shadow_c_c.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_c_l.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_c_r.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_f_c.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_f_l.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_f_r.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_h_c.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_h_l.png" />
+    <Content Include="jui\themes\default\images\shadow\shadow_h_r.png" />
+    <Content Include="jui\themes\default\images\tabs\tabscontrol.png" />
+    <Content Include="jui\themes\default\images\tabs\tabspage.png" />
+    <Content Include="jui\themes\default\images\tabs\tabspage_icon.png" />
+    <Content Include="jui\themes\default\images\tabs\tabspanel.png" />
+    <Content Include="jui\themes\default\images\themeButton.png" />
+    <Content Include="jui\themes\default\images\tree\check.png" />
+    <Content Include="jui\themes\default\images\tree\folder.png" />
+    <Content Include="jui\themes\default\images\tree\tree.png" />
+    <Content Include="jui\themes\default\images\wx.png" />
+    <Content Include="jui\themes\default\images\zfb.png" />
+    <Content Include="jui\themes\default\style.css" />
+    <Content Include="jui\themes\green\images\accordion\accordion.png" />
+    <Content Include="jui\themes\green\images\account_info_bg.png" />
+    <Content Include="jui\themes\green\images\alert\alertpanel.png" />
+    <Content Include="jui\themes\green\images\alert\alertpanel_icon.png" />
+    <Content Include="jui\themes\green\images\button\button_s.png" />
+    <Content Include="jui\themes\green\images\button\imgX.gif" />
+    <Content Include="jui\themes\green\images\dialog\dialogpanel.png" />
+    <Content Include="jui\themes\green\images\dialog\dialogpanel_icon.png" />
+    <Content Include="jui\themes\green\images\form\input_bg.png" />
+    <Content Include="jui\themes\green\images\form\input_bt.png" />
+    <Content Include="jui\themes\green\images\grid\grid.png" />
+    <Content Include="jui\themes\green\images\grid\resizeCol.png" />
+    <Content Include="jui\themes\green\images\grid\tableth.png" />
+    <Content Include="jui\themes\green\images\header_bg.png" />
+    <Content Include="jui\themes\green\images\layout\toggleSidebar.png" />
+    <Content Include="jui\themes\green\images\listLine.png" />
+    <Content Include="jui\themes\green\images\logo.png" />
+    <Content Include="jui\themes\green\images\pageHeader_bg.png" />
+    <Content Include="jui\themes\green\images\panel\panel.png" />
+    <Content Include="jui\themes\green\images\panel\panel_icon.png" />
+    <Content Include="jui\themes\green\images\tabs\tabscontrol.png" />
+    <Content Include="jui\themes\green\images\tabs\tabspage.png" />
+    <Content Include="jui\themes\green\images\tabs\tabspage_icon.png" />
+    <Content Include="jui\themes\green\images\tabs\tabspanel.png" />
+    <Content Include="jui\themes\green\images\tree\tree.png" />
+    <Content Include="jui\themes\green\style.css" />
+    <Content Include="jui\themes\purple\images\accordion\accordion.png" />
+    <Content Include="jui\themes\purple\images\account_info_bg.png" />
+    <Content Include="jui\themes\purple\images\alert\alertpanel.png" />
+    <Content Include="jui\themes\purple\images\alert\alertpanel_icon.png" />
+    <Content Include="jui\themes\purple\images\button\button_s.png" />
+    <Content Include="jui\themes\purple\images\button\imgX.gif" />
+    <Content Include="jui\themes\purple\images\dialog\dialogpanel.png" />
+    <Content Include="jui\themes\purple\images\dialog\dialogpanel_icon.png" />
+    <Content Include="jui\themes\purple\images\form\input_bg.png" />
+    <Content Include="jui\themes\purple\images\form\input_bt.png" />
+    <Content Include="jui\themes\purple\images\grid\grid.png" />
+    <Content Include="jui\themes\purple\images\grid\resizeCol.png" />
+    <Content Include="jui\themes\purple\images\grid\tableth.png" />
+    <Content Include="jui\themes\purple\images\header_bg.png" />
+    <Content Include="jui\themes\purple\images\layout\taskbar.png" />
+    <Content Include="jui\themes\purple\images\layout\taskbar_control.png" />
+    <Content Include="jui\themes\purple\images\layout\taskbar_icon.png" />
+    <Content Include="jui\themes\purple\images\layout\toggleSidebar.png" />
+    <Content Include="jui\themes\purple\images\login_bg.png" />
+    <Content Include="jui\themes\purple\images\login_content_bg.png" />
+    <Content Include="jui\themes\purple\images\login_header_bg.png" />
+    <Content Include="jui\themes\purple\images\login_list.png" />
+    <Content Include="jui\themes\purple\images\menu\menu.png" />
+    <Content Include="jui\themes\purple\images\pageHeader_bg.png" />
+    <Content Include="jui\themes\purple\images\panel\panel.png" />
+    <Content Include="jui\themes\purple\images\panel\panel_icon.png" />
+    <Content Include="jui\themes\purple\images\progressBar\progressBar_l.gif" />
+    <Content Include="jui\themes\purple\images\progressBar\progressBar_m.gif" />
+    <Content Include="jui\themes\purple\images\progressBar\progressBar_s.gif" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_c_c.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_c_l.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_c_r.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_f_c.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_f_l.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_f_r.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_h_c.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_h_l.png" />
+    <Content Include="jui\themes\purple\images\shadow\shadow_h_r.png" />
+    <Content Include="jui\themes\purple\images\tabs\tabscontrol.png" />
+    <Content Include="jui\themes\purple\images\tabs\tabspage.png" />
+    <Content Include="jui\themes\purple\images\tabs\tabspage_icon.png" />
+    <Content Include="jui\themes\purple\images\tabs\tabspanel.png" />
+    <Content Include="jui\themes\purple\images\tree\check.png" />
+    <Content Include="jui\themes\purple\images\tree\folder.png" />
+    <Content Include="jui\themes\purple\images\tree\tree.png" />
+    <Content Include="jui\themes\purple\style.css" />
+    <Content Include="jui\themes\silver\images\accordion\accordion.png" />
+    <Content Include="jui\themes\silver\images\account_info_bg.png" />
+    <Content Include="jui\themes\silver\images\alert\alertpanel.png" />
+    <Content Include="jui\themes\silver\images\alert\alertpanel_icon.png" />
+    <Content Include="jui\themes\silver\images\button\button_s.png" />
+    <Content Include="jui\themes\silver\images\button\imgX.gif" />
+    <Content Include="jui\themes\silver\images\dialog\dialogpanel.png" />
+    <Content Include="jui\themes\silver\images\dialog\dialogpanel_icon.png" />
+    <Content Include="jui\themes\silver\images\form\input_bg.png" />
+    <Content Include="jui\themes\silver\images\form\input_bt.png" />
+    <Content Include="jui\themes\silver\images\grid\grid.png" />
+    <Content Include="jui\themes\silver\images\grid\resizeCol.png" />
+    <Content Include="jui\themes\silver\images\grid\tableth.png" />
+    <Content Include="jui\themes\silver\images\header_bg.png" />
+    <Content Include="jui\themes\silver\images\layout\taskbar.png" />
+    <Content Include="jui\themes\silver\images\layout\taskbar_control.png" />
+    <Content Include="jui\themes\silver\images\layout\taskbar_icon.png" />
+    <Content Include="jui\themes\silver\images\layout\toggleSidebar.png" />
+    <Content Include="jui\themes\silver\images\listLine.png" />
+    <Content Include="jui\themes\silver\images\menu\menu.png" />
+    <Content Include="jui\themes\silver\images\pageHeader_bg.png" />
+    <Content Include="jui\themes\silver\images\panel\panel.png" />
+    <Content Include="jui\themes\silver\images\panel\panel_icon.png" />
+    <Content Include="jui\themes\silver\images\progressBar\progressBar_l.gif" />
+    <Content Include="jui\themes\silver\images\progressBar\progressBar_m.gif" />
+    <Content Include="jui\themes\silver\images\progressBar\progressBar_s.gif" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_c_c.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_c_l.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_c_r.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_f_c.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_f_l.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_f_r.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_h_c.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_h_l.png" />
+    <Content Include="jui\themes\silver\images\shadow\shadow_h_r.png" />
+    <Content Include="jui\themes\silver\images\tabs\tabscontrol.png" />
+    <Content Include="jui\themes\silver\images\tabs\tabspage.png" />
+    <Content Include="jui\themes\silver\images\tabs\tabspage_icon.png" />
+    <Content Include="jui\themes\silver\images\tabs\tabspanel.png" />
+    <Content Include="jui\themes\silver\images\tree\check.png" />
+    <Content Include="jui\themes\silver\images\tree\folder.png" />
+    <Content Include="jui\themes\silver\images\tree\tree.png" />
+    <Content Include="jui\themes\silver\style.css" />
+    <Content Include="jui\xheditor\xheditor-1.2.2.min.js" />
+    <Content Include="jui\xheditor\xheditor_emot\default\angry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\awkward.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\bye.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\config.txt" />
+    <Content Include="jui\xheditor\xheditor_emot\default\crazy.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\cry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\curse.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\cute.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\despise.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\doubt.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\envy.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\fastcry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\knock.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\laugh.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\mad.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\ohmy.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\panic.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\proud.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\quiet.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\sad.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\shutup.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\shy.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\sleep.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\smile.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\struggle.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\titter.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\tongue.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\wail.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\default\wronged.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\alien.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\angel.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\angry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\bandit.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\biglaugh.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\blink.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\blush.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\config.txt" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\cool.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\cry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\depres.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\devil.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\glare.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\heart.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\joyful.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\kiss.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\laugh.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\magician.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\ninja.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\pinch.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\police.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\sad.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\sick.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\sideways.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\sleep.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\smile.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\surprised.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\tongue.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\unsure.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\w00t.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\whistling.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\wondering.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\ipb\wub.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\1.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\10.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\11.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\12.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\13.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\14.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\15.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\16.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\17.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\18.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\19.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\2.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\20.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\21.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\22.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\23.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\24.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\25.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\26.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\27.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\28.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\29.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\3.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\30.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\31.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\32.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\33.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\34.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\35.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\36.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\37.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\38.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\39.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\4.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\40.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\5.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\6.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\7.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\8.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\msn\9.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\angry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\bad.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\blush.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\brokenheart.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\bye.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\coffee.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\config.txt" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\cool.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\cry.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\curse.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\cute.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\devil.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\envy.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\gift.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\good.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\kiss.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\laugh.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\love.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\music.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\question.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\rose.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\sad.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\shocked.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\shout.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\sick.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\sleepy.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\smile.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\soccer.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\sweat.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\tired.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\tongue.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\victory.gif" />
+    <Content Include="jui\xheditor\xheditor_emot\pidgin\wink.gif" />
+    <Content Include="jui\xheditor\xheditor_lang\en.js" />
+    <Content Include="jui\xheditor\xheditor_lang\zh-cn.js" />
+    <Content Include="jui\xheditor\xheditor_lang\zh-tw.js" />
+    <Content Include="jui\xheditor\xheditor_plugins\html2markdown.js" />
+    <Content Include="jui\xheditor\xheditor_plugins\htmldomparser.js" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\add.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\bg1.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\bg2.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\btnbg.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\btnbgr.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\clear.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\progressbg.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\img\start.gif" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\multiupload.css" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\multiupload.html" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\multiupload.js" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\swfupload\swfupload.js" />
+    <Content Include="jui\xheditor\xheditor_plugins\multiupload\swfupload\swfupload.swf" />
+    <Content Include="jui\xheditor\xheditor_plugins\showdown.js" />
+    <Content Include="jui\xheditor\xheditor_plugins\ubb.js" />
+    <Content Include="jui\xheditor\xheditor_skin\blank.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\iframe.css" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\anchor.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\close.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\flash.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\icons.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\loading.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\progress.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\progressbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-address.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-div.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-h1.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-h2.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-h3.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-h4.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-h5.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-h6.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-p.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\tag-pre.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\waiting.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\wmp.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\img\wordimg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\default\ui.css" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\iframe.css" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\anchor.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\close.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\flash.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\icons.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\loading.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\progress.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\progressbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-address.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-div.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-h1.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-h2.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-h3.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-h4.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-h5.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-h6.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-p.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\tag-pre.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\waiting.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\wmp.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\img\wordimg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\nostyle\ui.css" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\iframe.css" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\anchor.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\buttonbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\close.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\flash.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\icons.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\loading.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\progress.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\progressbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-address.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-div.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-h1.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-h2.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-h3.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-h4.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-h5.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-h6.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-p.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\tag-pre.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\waiting.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\wmp.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\img\wordimg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007blue\ui.css" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\iframe.css" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\anchor.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\buttonbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\close.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\flash.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\icons.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\loading.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\progress.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\progressbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-address.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-div.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-h1.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-h2.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-h3.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-h4.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-h5.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-h6.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-p.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\tag-pre.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\waiting.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\wmp.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\img\wordimg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\o2007silver\ui.css" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\iframe.css" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\anchor.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\buttonbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\close.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\flash.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\icons.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\loading.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\progress.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\progressbg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-address.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-div.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-h1.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-h2.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-h3.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-h4.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-h5.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-h6.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-p.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\tag-pre.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\titlebg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\waiting.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\wmp.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\img\wordimg.gif" />
+    <Content Include="jui\xheditor\xheditor_skin\vista\ui.css" />
+    <Content Include="rhui\.gitignore" />
+    <Content Include="rhui\button.html" />
+    <Content Include="rhui\css\doc.css" />
+    <Content Include="rhui\css\rhui.css" />
+    <Content Include="rhui\css\rhui.min.css" />
+    <Content Include="rhui\dialog.html" />
+    <Content Include="rhui\form.html" />
+    <Content Include="rhui\jslib\jquery-datetimepicker\jquery.datetimepicker.css" />
+    <Content Include="rhui\jslib\jquery-datetimepicker\jquery.datetimepicker.js" />
+    <Content Include="rhui\jslib\jquery\jquery-1.11.2.js" />
+    <Content Include="rhui\jslib\jquery\jquery-1.11.2.min.js" />
+    <Content Include="rhui\js\rhui-all.js" />
+    <Content Include="rhui\js\rhui-all.min.js" />
+    <Content Include="rhui\js\rhui-core.js" />
+    <Content Include="rhui\js\rhui-loading.js" />
+    <Content Include="rhui\js\rhui-mobile.js" />
+    <Content Include="rhui\js\rhui-panel.js" />
+    <Content Include="rhui\js\rhui-toolbar.js" />
+    <Content Include="rhui\js\rhui-window.js" />
+    <Content Include="rhui\js\合并js.txt" />
+    <Content Include="rhui\loading.html" />
+    <Content Include="rhui\panel.html" />
+    <Content Include="rhui\toolbar.html" />
+    <Content Include="rhui\window.html" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="bootstrap-datetimepicker-master\.jshintrc" />
+    <Content Include="bootstrap-datetimepicker-master\.npmignore" />
+    <Content Include="bootstrap-datetimepicker-master\.travis.yml" />
+    <Content Include="bootstrap-datetimepicker-master\bower.json" />
+    <Content Include="bootstrap-datetimepicker-master\build\build.less" />
+    <Content Include="bootstrap-datetimepicker-master\build\build_standalone.less" />
+    <Content Include="bootstrap-datetimepicker-master\less\datetimepicker.less" />
+    <Content Include="bootstrap-datetimepicker-master\LICENSE" />
+    <Content Include="bootstrap-datetimepicker-master\minify.sh" />
+    <Content Include="bootstrap-datetimepicker-master\package.json" />
+    <Content Include="bootstrap-datetimepicker-master\README.md" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap-datetimepicker-master\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bootstrap-datetimepicker-master\tests\README.md" />
+    <Content Include="rhui\jslib\jquery\jquery-1.11.2.min.map" />
+    <Content Include="rhui\LICENSE" />
+    <Content Include="rhui\README.md" />
+    <Content Include="Areas\Wujiajie\Views\web.config" />
+    <Content Include="bootstrap-3.3.0-dist\dist\css\bootstrap-theme.css.map" />
+    <Content Include="bootstrap-3.3.0-dist\dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-3.3.0-dist\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap-3.3.0-dist\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap-3.3.0-dist\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\Student\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\StudentEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskClass\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskClass\ClassEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskClass\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaskHome\UpdatePwd.cshtml" />
+    <Content Include="Areas\Admin\Views\Teacher\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Teacher\TeacherEdit.cshtml" />
+    <Content Include="Areas\Login\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Login\Views\Login\TetS.cshtml" />
+    <Content Include="Areas\Login\Views\Login\TetT.cshtml" />
+    <Content Include="Areas\Login\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Login\Views\web.config" />
+    <Content Include="Areas\Login\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Wujiajie\Views\Search\Index.cshtml" />
+    <Content Include="Areas\Wujiajie\Views\Shared\_LayoutSearch.cshtml" />
+    <Content Include="Areas\Wujiajie\Views\Search\SearchResult.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskClassController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
+    <Compile Include="Areas\Login\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
+    <Compile Include="Areas\Wujiajie\Controllers\ClassTaskController.cs" />
+    <Compile Include="Areas\Wujiajie\Controllers\CourseController.cs" />
+    <Compile Include="Areas\Wujiajie\Controllers\SearchController.cs" />
+    <Compile Include="Areas\Wujiajie\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Wujiajie\WujiajieAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="fullcalendar-3.4.0\demos\json\events.json" />
+    <Content Include="fullcalendar-3.4.0\demos\php\get-events.php" />
+    <Content Include="fullcalendar-3.4.0\demos\php\get-timezones.php" />
+    <Content Include="fullcalendar-3.4.0\demos\php\utils.php" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Login\Models\" />
+    <Folder Include="Areas\Wujiajie\Models\" />
+    <Folder Include="Areas\Wujiajie\Views\ClassTask\" />
+    <Folder Include="Areas\Wujiajie\Views\Student\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{bce6b9a7-9beb-4651-8a90-293fba4937c0}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{c5381a05-8f93-4818-8f68-e637ef60ca0d}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{2d4e22ac-d32f-440b-adb7-5389eaef882b}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49576</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49576/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

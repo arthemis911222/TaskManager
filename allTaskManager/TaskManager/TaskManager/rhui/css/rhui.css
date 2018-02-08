@@ -1,0 +1,392 @@
+html,head,body,div,form,table,tr,th,td,ul,ol,li {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+iframe {
+	margin: 0;
+	padding: 0;
+	outline-width: 0;
+	border-width: 0;
+}
+
+ul,ol,li {
+	list-style-type: none;
+}
+
+.rhui-clearfix {
+	float: none;
+	clear: both;
+}
+
+.rhui-inline-block {
+	display: inline-block;
+	/*兼容IE6、IE7*/
+	*zoom: 1;
+	*display: inline;
+}
+
+.rhui-text-left {
+	text-align: left !important;
+}
+
+.rhui-text-center {
+	text-align: center !important;
+}
+
+.rhui-text-right {
+	text-align: right !important;
+}
+
+.rhui-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 9000;
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	border-style: none;
+	background-color: #777;
+	opacity: 0.3;
+	zoom: 1;
+	filter: alpha(opacity=30);
+}
+
+.rhui-loading {
+	position: absolute;
+	z-index: 9999;
+	display: block;
+	margin: 0;
+	padding: 15px 20px;
+	border: 2px solid rgb(109,157,215);
+	background-color: #fff;
+	color: blue;
+	letter-spacing: 2px;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: wait;
+}
+
+/* rhui button */
+.rhui-btn {
+	display: inline-block;
+	margin: 0;
+	padding: 0 20px;
+	outline-style: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	background-image: none;
+	color: #333;
+	vertical-align: middle;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	font-size: 12px;
+	line-height: 25px;
+	cursor: pointer;
+	/* ie6/ie7 inline-block hack */
+	*zoom: 1;
+	*display: inline;
+}
+
+.rhui-btn:hover {
+	border-color: #adadad;
+	background-color: #e6e6e6;
+}
+
+.rhui-btn-large {
+	padding: 0 25px;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.rhui-btn-small {
+	padding: 0 15px;
+	line-height: 21px;
+}
+
+.rhui-btn-min {
+	padding: 0 10px;
+	line-height: 18px;
+}
+
+.rhui-btn-primary {
+	border-color: #2e6da4;
+	background-color: #337ab7;
+	color: #fff;
+}
+
+.rhui-btn-primary:hover {
+	border-color: #204d74;
+	background-color: #286090;
+}
+
+.rhui-btn-success {
+	border-color: #4cae4c;
+	background-color: #5cb85c;
+	color: #fff;
+}
+
+.rhui-btn-success:hover {
+	border-color: #398439;
+	background-color: #449d44;
+}
+
+.rhui-btn-info {
+	border-color: #46b8da;
+	background-color: #5bc0de;
+	color: #fff;
+}
+
+.rhui-btn-info:hover {
+	border-color: #269abc;
+	background-color: #31b0d5;
+}
+
+.rhui-btn-warning {
+	border-color: #eea236;
+	background-color: #f0ad4e;
+	color: #fff;
+}
+
+.rhui-btn-warning:hover {
+	border-color: #d58512;
+	background-color: #ec971f;
+}
+
+.rhui-btn-danger {
+	border-color: #d43f3a;
+	background-color: #d9534f;
+	color: #fff;
+}
+
+.rhui-btn-danger:hover {
+	border-color: #ac2925;
+	background-color: #c9302c;
+}
+/* end rhui button */
+
+/* rhui toolbar */
+.rhui-toolbar {
+	float: none;
+	display: block;
+	margin: 0;
+	padding: 0;
+	height: 29px;
+	border: 1px solid #b5cbec;
+	background-color: #d9e8fb;
+	line-height: 29px;
+}
+
+.rhui-toolbar>.rhui-toolbar-tool {
+	float: left;
+	display: block;
+	margin: 1px 3px;
+	padding: 0 15px;
+	border-color: #d9e8fb;
+	background-color: #d9e8fb;
+}
+
+.rhui-toolbar>.rhui-toolbar-tool:hover {
+	border-color: #b5cbec;
+	background-color: #ddd;
+}
+
+.rhui-toolbar>.rhui-toolbar-separator {
+	margin: 4px 3px;
+	padding: 0;
+	height: 21px;
+	outline-width: 0;
+	border-width: 0;
+	border-left: 1px solid #b5cbec;
+	background-color: transparent;
+}
+/* end rhui toolbar */
+
+/* rhui panel */
+.rhui-panel {
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #bed5f3;
+}
+
+.rhui-panel-header {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+	height: 28px;
+	border-width: 0;
+	border-bottom: 1px solid #bed5f3;
+	background-color: #e5effe;
+	text-align: left;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 28px;
+}
+
+.rhui-panel-header-title {
+	border-width: 0;
+	text-align: left;
+	text-indent: 8px;
+	line-height: 28px;
+}
+
+.rhui-panel-header>.rhui-toolbar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	height: 28px;
+	outline-width: 0;
+	border-width: 0;
+	background-color: transparent;
+	line-height: 28px;
+}
+
+.rhui-panel-header>.rhui-toolbar>.rhui-toolbar-tool {
+	float: right;
+	display: block;
+	margin: 0;
+	padding: 0 8px;
+	height: 28px;
+	border-width: 0;
+	border-radius: 0;
+	background-color: transparent;
+	text-align: center;
+	line-height: 28px;
+	cursor: pointer;
+}
+
+.rhui-panel-header>.rhui-toolbar>.rhui-toolbar-tool:hover {
+	background-color: rgb(212, 64, 39);
+	color: #fff;
+}
+
+.rhui-panel-body {
+	position: relative;
+	display: block;
+	overflow: auto;
+	margin: 0;
+	padding: 10px 8px;
+	border-width: 0;
+	background-color: #fff;
+}
+/* end rhui panel */
+
+/* rhui window */
+.rhui-window {
+	position: fixed;
+	z-index: 9001;
+	display: block;
+	background-color: #fff;
+}
+
+.rhui-window-footer {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 4px 5px;
+	height: 29px;
+	border-top: 1px solid #bed5f3;
+	background-color: #ebf0f5;
+	text-align: right;
+}
+
+.rhui-window-footer>.rhui-toolbar {
+	display: block;
+	border-width: 0;
+	background-color: transparent;
+}
+
+.rhui-window-footer>.rhui-toolbar>.rhui-btn {
+	margin: 1px 5px;
+}
+/* end rhui window */
+
+/* rhui dialog */
+.rhui-dialog-body {
+	padding: 15px;
+	text-align: left;
+	font-size: 12px;
+}
+/* end rhui dialog */
+
+/* rhui field */
+.rhui-field {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	height: 21px;
+	outline-style: none;
+	border: 1px solid #bed5f3;
+	vertical-align: middle;
+	text-align: left;
+	text-indent: 5px;
+	line-height: 21px;
+	*zoom: 1;
+	*display: inline;
+}
+
+.rhui-field-disabled {
+	background-color: #F0F0F0;
+	background-image: none;
+}
+
+select.rhui-field {
+	text-indent: 0;
+	height: 23px;
+	width: 202px;
+}
+
+textarea.rhui-field {
+	text-indent: 0;
+}
+
+.rhui-field-plain {
+	height: 23px;
+	width: 100%;
+	border-style: none;
+	line-height: 23px;
+}
+
+select.rhui-field-plain, textarea.rhui-field-plain {
+	width: 100%;
+}
+/* end rhui field */
+
+/* rhui table */
+.rhui-table {
+	border-collapse: collapse;
+}
+
+.rhui-table th, .rhui-table td {
+	border: 1px solid #bed5f3;
+	vertical-align: middle;	
+}
+
+.rhui-table-plain th, .rhui-table-plain td {
+	border-width: 0;
+}
+
+.rhui-table-field th, .rhui-table-field td {
+	line-height: 25px;
+}
+
+.rhui-table-plain-field th, .rhui-table-plain-field td {
+	padding: 5px 0;
+	line-height: 25px;
+}
+/* end rhui table */

@@ -1,0 +1,80 @@
+﻿@using TaskManager.Model;
+@{
+    Layout = null;
+    T_Base_Student item = ViewBag.item;
+
+}
+
+
+<div class="pageContent">
+    <form method="post" action="/Admin/Student/EditSave" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+        <div class="pageFormContent" layoutH="56">
+            <input name="Id" value="@item.Id" type="hidden" />
+            <p>
+                <label>姓名：</label>
+                <input name="Name" type="text" size="30" value="@item.Name" />
+            </p>
+            <dl>
+                <dt>性别：</dt>
+                <dd class="form-group">
+                        
+                        <input type="radio" name="Sex" value="1" /> 女
+                        <input type="radio" name="Sex"  value="0" />男
+                       
+                      
+                </dd>
+            </dl>
+            <p>
+                <label>学号：</label>
+                <input name="StuId" type="text" size="30" value="@item.StuId" />
+            </p>
+            <p>
+                <label>电话：</label>
+                <input name="Phone" type="text" size="30" value="@item.Phone" />
+            </p>
+            <dl>
+                <dt>是否班干部：</dt>
+                <dd class="form-group">
+                    
+                            <input type="radio" name="IsBGB"  value="1" />是
+                            <input type="radio" name="IsBGB" value="0" /> 否
+                       
+                </dd>
+            </dl>
+            <dl>
+                <dt>是否课代表：</dt>
+                <dd class="form-group">                    
+                        
+                            <input type="radio" name="IsKDB" value="1" />是
+                            <input type="radio" name="IsKDB"  value="0" />否
+                      
+                </dd>
+            </dl>
+            <p>
+                <label>班级：</label>
+
+               <input name="Class.Id" type="hidden" suggesturl="/Admin/Student/GetAllClass" lookupgroup="Class" value="@item.ClassId">
+                <input class="required" name="Class.Name" id="Class.Id" type="text" postfield="keyword" suggestfields="Name,Id" suggesturl="/Admin/Student/GetAllClass" lookupgroup="Class" size="30" value="@item.Class.Name">
+
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+<script>
+    var sex=@item.Sex;
+    var isBGB=@item.IsBGB;
+    var isKDB=@item.IsKDB;
+    $(":radio[name='Sex'][value='" + sex + "']").prop("checked", "checked");
+    $(":radio[name='IsBGB'][value='" + isBGB + "']").prop("checked", "checked");
+    $(":radio[name='IsKDB'][value='" + isKDB + "']").prop("checked", "checked");
+</script>

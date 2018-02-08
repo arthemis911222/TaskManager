@@ -1,0 +1,13 @@
+H:\web案例开发与设计\book\DBUtility\bin\Release\book.DBUtility.dll
+H:\web案例开发与设计\book\DBUtility\bin\Release\IBatisNet.Common.dll
+H:\web案例开发与设计\book\DBUtility\bin\Release\IBatisNet.DataMapper.dll
+H:\web案例开发与设计\book\DBUtility\bin\Release\MySql.Data.dll
+H:\web案例开发与设计\book\DBUtility\bin\Release\System.Data.SQLite.DLL
+H:\web案例开发与设计\book\DBUtility\obj\Release\book.DBUtility.dll
+E:\school\web\案例分析\book\DBUtility\bin\Release\book.DBUtility.dll
+E:\school\web\案例分析\book\DBUtility\bin\Release\IBatisNet.Common.dll
+E:\school\web\案例分析\book\DBUtility\bin\Release\IBatisNet.DataMapper.dll
+E:\school\web\案例分析\book\DBUtility\bin\Release\MySql.Data.dll
+E:\school\web\案例分析\book\DBUtility\bin\Release\System.Data.SQLite.DLL
+E:\school\web\案例分析\book\DBUtility\obj\Release\DBUtility.csprojResolveAssemblyReference.cache
+E:\school\web\案例分析\book\DBUtility\obj\Release\book.DBUtility.dll

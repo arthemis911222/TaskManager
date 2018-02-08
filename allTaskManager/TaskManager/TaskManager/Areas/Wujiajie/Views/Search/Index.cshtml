@@ -1,0 +1,57 @@
+﻿@using TaskManager.Model;
+@{ 
+    ViewBag.Title = "日程搜索";
+    Layout = "~/Areas/Wujiajie/Views/Shared/_LayoutSearch.cshtml";
+
+    List<T_Search_Event> lst = ViewBag.lst;
+}
+
+
+
+    <tbody>
+    @{
+        if (lst != null)
+        {
+            foreach (T_Search_Event item in lst)
+            {
+
+            <tr>
+                <th></th>
+                <th>@(item.Name)</th>
+
+                @{
+                    if (item.Type == 1)
+                    {
+                        <th style="color:cornflowerblue">我的日程</th>
+                    }
+                    else if (item.Type == 2)
+                    {
+                        <th style="color:#FF7F00">班级日程</th>
+                    }
+                    else
+                    {
+                        <th style="color:#CD2626">课程日程</th>
+                    }
+                }
+
+                <th>@(item.StartTime)</th>
+                <th>@(item.EndTime)</th>
+                @{
+                    if (item.AlertTime == 0)
+                    {
+                        <th>无</th>
+                    }
+                    else
+                    {
+                        <th>开始前@(item.AlertTime)分钟</th>
+                    }
+                }
+
+            </tr>
+                            }
+                        }
+                    }
+</tbody>
+
+
+

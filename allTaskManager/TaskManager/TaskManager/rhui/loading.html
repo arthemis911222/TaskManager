@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link type="text/css" rel="stylesheet" href="css/rhui.css" />
+	<link type="text/css" rel="stylesheet" href="css/doc.css" />
+	<script type="text/javascript" src="jslib/jquery/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="js/rhui-all.min.js"></script>
+</head>
+
+<body>
+	<div class="doc-wrapper">
+		<h1 class="doc-header">Loading</h1>
+		<div class="doc-section">
+			Loading实现加载等待效果，支持整个页面或者指定元素的加载等待。
+		</div>
+		
+		<div class="doc-section">
+			<div class="doc-notice">实例</div>
+			<div id="loading1" style="height:150px;margin:20px 0;border:1px solid #8cbced;"></div>
+			<div>
+				<button class="rhui-btn" onclick="Rhui.loading($('#loading1'));return false;">添加Loading</button>
+				<button class="rhui-btn" id="btn1">自定义内容</button>
+				<button class="rhui-btn" onclick="Rhui.unloading($('#loading1'));return false;">取消Loading</button>				
+				<button class="rhui-btn" id="btn2">页面Loading</button>
+			</div>
+		</div>
+		
+		<div class="doc-section">
+			<div class="doc-notice">初始化</div>
+			<table class="doc-table">
+				<thead>
+					<tr>
+						<th style="width:250px;">方法</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Rhui.loading(target, options)</td>
+						<td class="text-left">
+							给元素添加Loading效果，返回Loading组件。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">target</span></td>
+										<td class="text-left" style="width:100px;">String<br/>jQuery<br/>HTMLElement</td>
+										<td class="text-left">[必填]Loading的目标元素，可以是HTML元素、jQuery实例、HTML元素id或者jQuery选择器，如果匹配多个对象，只作用于第一个。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">options</span></td>
+										<td class="text-left" style="width:100px;">String<br/>Object</td>
+										<td class="text-left">[必填]初始化配置项。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>Rhui.unloading(target)</td>
+						<td class="text-left">
+							取消元素的Loading效果，同时调用destroy()方法销毁Loading组件。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">target</span></td>
+										<td class="text-left" style="width:100px;">String<br/>jQuery<br/>HTMLElement</td>
+										<td class="text-left">[必填]Loading的目标元素，可以是HTML元素、jQuery实例、HTML元素id或者jQuery选择器，如果匹配多个对象，只作用于第一个。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>$('#id').rhui('loading', options)</td>
+						<td class="text-left">
+							给元素添加Loading效果，返回Loading组件。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">options</span></td>
+										<td class="text-left" style="width:100px;">String<br/>Object</td>
+										<td class="text-left">[必填]初始化配置项。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="doc-section">
+			<div class="doc-notice">Options配置项</div>
+			<table class="doc-table">
+				<thead>
+					<tr>
+						<th style="width:150px;">选项</th>
+						<th style="width:150px;">类型</th>
+						<th style="width:150px;">默认值</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>String</td>
+						<td><span class="doc-hightlight">undefined</span></td>
+						<td class="text-left">组件实例id，如果不指定则自动生成。</td>
+					</tr>
+					<tr>
+						<td>message</td>
+						<td>String</td>
+						<td><span class="doc-hightlight">请稍候。。。</span></td>
+						<td class="text-left">显示内容。</td>
+					</tr>
+					<tr>
+						<td>cls</td>
+						<td>String</td>
+						<td><span class="doc-hightlight"></span></td>
+						<td class="text-left">css样式类，多个样式用空格分开。</td>
+					</tr>
+					<tr>
+						<td>style</td>
+						<td>Object</td>
+						<td><span class="doc-hightlight">undefined</span></td>
+						<td class="text-left">css样式，会覆盖cls中的相同样式。</td>
+					</tr>
+					<tr>
+						<td>events</td>
+						<td>Object</td>
+						<td><span class="doc-hightlight"></span></td>
+						<td class="text-left">
+							事件配置。Loading有
+							<span class="doc-hightlight">onShow</span>、
+							<span class="doc-hightlight">onHide</span>、
+							<span class="doc-hightlight">onDestroy</span>事件
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="doc-section">
+			<div class="doc-notice">事件</div>
+			<table class="doc-table">
+				<thead>
+					<tr>
+						<th style="width:250px;">事件</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>onShow(this)</td>
+						<td class="text-left">
+							显示事件，调用<span class="doc-hightlight">show()</span>方法后触发，默认是<span class="doc-hightlight">undefined</span>。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">this</span></td>
+										<td class="text-left" style="width:100px;">Loading</td>
+										<td class="text-left">this为当前Loading组件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>onHide(this)</td>
+						<td class="text-left">
+							隐藏事件，调用<span class="doc-hightlight">hide()</span>方法后触发，默认是<span class="doc-hightlight">undefined</span>。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">this</span></td>
+										<td class="text-left" style="width:100px;">Loading</td>
+										<td class="text-left">this为当前Loading组件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>onDestroy(this)</td>
+						<td class="text-left">
+							销毁事件，调用<span class="doc-hightlight">destroy()</span>方法后触发，默认是<span class="doc-hightlight">undefined</span>。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">this</span></td>
+										<td class="text-left" style="width:100px;">Loading</td>
+										<td class="text-left">this为当前Loading组件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>onResize(this)</td>
+						<td class="text-left">
+							重新计算大小事件，调用<span class="doc-hightlight">setMessage()</span>、<span class="doc-hightlight">resize()</span>方法后触发，默认是<span class="doc-hightlight">undefined</span>。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">this</span></td>
+										<td class="text-left" style="width:100px;">Loading</td>
+										<td class="text-left">this为当前Loading组件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="doc-section">
+			<div class="doc-notice">方法</div>
+			<table class="doc-table">
+				<thead>
+					<tr>
+						<th style="width:250px;">方法</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>show(preventEvent)</td>
+						<td class="text-left">
+							显示组件，并触发onShow事件。该方法返回当前Loading组件，支持链式调用。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">preventEvent</span></td>
+										<td class="text-left" style="width:100px;">Boolean</td>
+										<td class="text-left">[可选]true表示阻止onShow事件触发，留空或者false表示允许触发onShow事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>hide(preventEvent)</td>
+						<td class="text-left">
+							隐藏组件，并触发onHide事件。该方法返回当前Loading组件，支持链式调用。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">preventEvent</span></td>
+										<td class="text-left" style="width:100px;">Boolean</td>
+										<td class="text-left">[可选]true表示阻止onHide事件触发，留空或者false表示允许触发onHide事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>destroy(preventEvent)</td>
+						<td class="text-left">
+							销毁组件，并触发onDestroy事件。该方法返回当前Loading组件，支持链式调用。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">preventEvent</span></td>
+										<td class="text-left" style="width:100px;">Boolean</td>
+										<td class="text-left">[可选]true表示阻止onDestroy事件触发，留空或者false表示允许触发onDestroy事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>resize(width,height,preventEvent)</td>
+						<td class="text-left">
+							重置大小，居中显示，并触发onResize事件。该方法返回当前Loading组件，支持链式调用。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">width</span></td>
+										<td class="text-left" style="width:100px;">Number</td>
+										<td class="text-left">[必填]宽度，单位像素</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">height</span></td>
+										<td class="text-left" style="width:100px;">Number</td>
+										<td class="text-left">[必填]高度，单位像素</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">preventEvent</span></td>
+										<td class="text-left" style="width:100px;">Boolean</td>
+										<td class="text-left">[可选]true表示阻止onResize事件触发，留空或者false表示允许触发onResize事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>setMessage(message,preventEvent)</td>
+						<td class="text-left">
+							设置Loading的内容，重新定位，并触发onResize事件。该方法返回当前Loading组件，支持链式调用。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">message</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[必填]Loading的内容。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">preventEvent</span></td>
+										<td class="text-left" style="width:100px;">Boolean</td>
+										<td class="text-left">[可选]true表示阻止onResize事件触发，留空或者false表示允许触发onResize事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+			$('#btn1').click(function(){
+				$('#loading1').rhui('loading', '正在努力加载，请稍候。。。');
+				return false;
+			});
+		
+			$('#btn2').click(function(){
+				Rhui.loading(window, {
+					message: '3秒后退出。。。'
+				});
+				
+				setTimeout(function(){
+					Rhui.unloading(window);
+				}, 3000);
+				return false;
+			});
+		});
+	</script>
+</body>
+
+</html>

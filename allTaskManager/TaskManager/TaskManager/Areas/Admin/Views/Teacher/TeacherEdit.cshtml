@@ -1,0 +1,63 @@
+﻿@using TaskManager.Model;
+@{
+    Layout = null;
+    T_Base_Teacher item = ViewBag.item;
+
+}
+
+
+<div class="pageContent">
+    <form method="post" action="/Admin/Teacher/EditSave" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+        <div class="pageFormContent" layoutH="56">
+            <input name="Id" value="@item.Id" type="hidden" />
+            <p>
+                <label>姓名：</label>
+                <input name="Name" type="text" size="30" value="@item.Name" />
+            </p>
+            <dl>
+                <dt>性别：</dt>
+                <dd class="form-group">
+
+                    <input type="radio" name="Sex" value="1" /> 女
+                    <input type="radio" name="Sex" value="0" />男
+
+
+                </dd>
+            </dl>
+            <p>
+                <label>学号：</label>
+                <input name="TeaId" type="text" size="30" value="@item.TeaId" />
+            </p>
+            <p>
+                <label>电话：</label>
+                <input name="Phone" type="text" size="30" value="@item.Phone" />
+            </p>
+            <dl>
+                <dt>是否班主任：</dt>
+                <dd class="form-group">
+
+                    <input type="radio" name="IsBZR" value="1" />是
+                    <input type="radio" name="IsBZR" value="0" /> 否
+
+                </dd>
+            </dl>
+           
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+<script>
+    var sex=@item.Sex;
+    var isBZR=@item.IsBZR;
+    $(":radio[name='Sex'][value='" + sex + "']").prop("checked", "checked");
+    $(":radio[name='IsBGB'][value='" + isBZR + "']").prop("checked", "checked");
+</script>

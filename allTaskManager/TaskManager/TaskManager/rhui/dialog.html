@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link type="text/css" rel="stylesheet" href="css/rhui.css" />
+	<link type="text/css" rel="stylesheet" href="css/doc.css" />
+	<script type="text/javascript" src="jslib/jquery/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="js/rhui-all.min.js"></script>
+</head>
+
+<body>
+	<div class="doc-wrapper">
+		<h1 class="doc-header">Dialog</h1>
+		
+		<div class="doc-section">
+			<div class="doc-notice">实例</div>
+			<div>
+				<button class="rhui-btn" id="btnAlert">alert</button>
+				<button class="rhui-btn" id="btnConfirm">confirm</button>
+				<button class="rhui-btn" id="btnPrompt">prompt</button>
+			</div>
+		</div>
+		
+		<div class="doc-section">
+			<div class="doc-notice">初始化</div>
+			<table class="doc-table">
+				<thead>
+					<tr>
+						<th style="width:250px;">方法</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Rhui.alert(msg, title, handler)</td>
+						<td class="text-left">
+							创建警告框。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">msg</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[必填]内容。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">title</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[可选]标题。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">handler</span></td>
+										<td class="text-left" style="width:100px;">Function</td>
+										<td class="text-left">[可选]点击确定按钮时触发的事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>Rhui.confirm(msg, title, handler)</td>
+						<td class="text-left">
+							创建确认框。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">msg</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[必填]内容。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">title</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[可选]标题。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">handler</span></td>
+										<td class="text-left" style="width:100px;">Function</td>
+										<td class="text-left">[可选]点击确定或者取消按钮时触发的事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>Rhui.prompt(msg, title, handler)</td>
+						<td class="text-left">
+							创建输入框。
+							<table class="doc-table doc-table-plain">
+								<tbody>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">msg</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[必填]内容。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">title</span></td>
+										<td class="text-left" style="width:100px;">String</td>
+										<td class="text-left">[可选]标题。</td>
+									</tr>
+									<tr>
+										<td class="text-left" style="width:120px;"><span class="doc-param">handler</span></td>
+										<td class="text-left" style="width:100px;">Function</td>
+										<td class="text-left">[可选]点击确定按钮时触发的事件。</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('#btnAlert').click(function(){
+				Rhui.alert('这里是警告！', '提示', function(){
+					alert('关闭警告框！');
+				});
+				return false;
+			});
+			
+			$('#btnConfirm').click(function(){
+				Rhui.confirm('点击确定，value值为true。点击取消，value值为false。', '提示', function(button){
+					alert('您点击了' + (button ? '确定' : '取消'));
+				});
+				return false;
+			});
+			
+			$('#btnPrompt').click(function(){
+				Rhui.prompt('请输入内容', '提示', function(button, value){
+					alert('您点击了' + (button ? '确定' : '取消') + '！输入的内容是：' + value);
+				});
+				return false;
+			});
+		});
+	</script>
+</body>
+
+</html>

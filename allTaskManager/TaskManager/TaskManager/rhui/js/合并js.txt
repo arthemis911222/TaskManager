@@ -1,0 +1,1 @@
+copy rhui-core.js+rhui-loading.js+rhui-toolbar.js+rhui-panel.js+rhui-window.js rhui-all-test.js

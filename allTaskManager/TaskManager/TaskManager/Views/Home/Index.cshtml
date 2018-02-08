@@ -1,0 +1,1368 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    int userid = 3;
+    int classid = 2;
+    string userName = "吴佳洁";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../rhui/css/rhui.min.css" rel="stylesheet" />
+    <link href="../bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../fullcalendar-3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href='../fullcalendar-3.4.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='../fullcalendar-3.4.0/lib/moment.min.js'></script>
+    <script src='../fullcalendar-3.4.0/lib/jquery.min.js'></script>
+    <script src='../fullcalendar-3.4.0/lib/jquery-ui.min.js'></script>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src='../fullcalendar-3.4.0/fullcalendar.min.js'></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../rhui/js/rhui-all.min.js"></script>
+
+    <style>
+        .page-content {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            margin-left: 0;
+            margin-right: 0;
+            border: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-radius: 0;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+            min-height: 45px;
+            position: relative;
+            background: #438eb9;
+        }
+
+        .ace-nav > li {
+            line-height: 31px;
+            height: 51px;
+            border-left: 1px solid #DDD;
+            padding: 0;
+            position: relative;
+            float: left !important;
+        }
+
+        .light-blue {
+            background-color: deepskyblue;
+        }
+
+        .purple {
+            background-color: purple;
+        }
+
+        .grey {
+            background-color: #696969;
+        }
+
+        .green {
+            background-color: mediumseagreen;
+        }
+
+         .form_input{
+            width:150px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="selectWin" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 id="myModalLabel">添加日程</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <button class="btn btn-info" id="myTask">我的日程</button>
+                    <button class="btn btn-warning" id="classTask">班级日程</button>
+                    <button class="btn btn-danger" id="courseTask">课程日程</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新建我的日程窗口 -->
+    <div class="rhui-window" id="addCalendarWin" style="display:none;">
+        <div class="rhui-panel-body">
+            <table style="left:50%; top:50%;">
+                <tr>
+                    <td class="field-label">日程标题：</td>
+                    <td>
+                        <input class="rhui-field" name="title" type="text" />
+                        <input name="userid" value="" type="hidden" /><!--用户Id-->
+                    </td>
+                </tr>
+                <tr style="height:30px;">
+                    <td class="field-label">日程类型：</td>
+                    <td style="color:deepskyblue">我的日程<input name="type" value="1" type="hidden" /></td>
+                </tr>
+                <tr>
+                    <td class="field-label">日程内容：</td>
+                    <td><textarea class="rhui-field" id="content" style="height:62px;"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="field-label">开始时间：</td>
+                    <td><input class="rhui-field" name="start" type="text" /></td>
+                </tr>
+                <tr>
+                    <td class="field-label">结束时间：</td>
+                    <td><input class="rhui-field" name="end" type="text" /></td>
+                </tr>
+                <tr style="height:30px;">
+                    <td class="field-label">日程提醒：</td>
+                    <td>
+                        <select name="taskalert">
+                            <option value="0">无</option>
+                            <option value="5">开始前5分钟</option>
+                            <option value="10">开始前10分钟</option>
+                            <option value="30">开始前30分钟</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- end 新建我的日程窗口 -->
+
+    <!-- 修改我的日程窗口 -->
+    <div class="rhui-window" id="editCalendarWin" style="display:none;">
+        <div class="rhui-panel-body">
+            <table style=" left:50%; top:50%;">
+                <tr>
+                    <td class="field-label">日程标题：</td>
+                    <td>
+                        <input class="rhui-field" name="title" type="text" />
+                        <input name="userid" value="" type="hidden" /><!--用户Id-->
+                        <input name="taskid" value="" type="hidden" /><!--事件Id-->
+                    </td>
+                </tr>
+                <tr style="height:30px;">
+                    <td class="field-label">日程类型：</td>
+                    <td style="color:deepskyblue">我的日程<input name="type" value="1" type="hidden" /></td>
+                </tr>
+                <tr>
+                    <td class="field-label">日程内容：</td>
+                    <td><textarea class="rhui-field" id="des" style="height:62px;"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="field-label">开始时间：</td>
+                    <td><input class="rhui-field" name="start" type="text" /></td>
+                </tr>
+                <tr>
+                    <td class="field-label">结束时间：</td>
+                    <td><input class="rhui-field" name="end" type="text" /></td>
+                </tr>
+                <tr style="height:30px;">
+                    <td class="field-label">日程提醒：</td>
+                    <td>
+                        <select name="taskalert" autocomplete="off">
+                            <option value="0">无</option>
+                            <option value="5">开始前5分钟</option>
+                            <option value="10">开始前10分钟</option>
+                            <option value="30">开始前30分钟</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- end 修改我的日程窗口 -->
+
+    <!--添加班级日程-->
+    <div class="modal fade modalPanel" id="addClassCalendarWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title" id="myModalLabel">添加班级日程</h5>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal">
+
+                        <div class="control-group" style="height:40px;">
+                            <!-- Text input-->
+                            <div style="width:50%;float:left;">
+                                <label class="control-label" for="input01">日程标题</label>
+                                <input id="tasktitle" class="input-xlarge" type="text" name="title">
+                            </div>
+
+                            <div style="width:50%;float:left;">
+                                <label class="control-label" for="input01">日程类型：</label>
+                                <label class="control-label" style="color:orange">班级日程</label>
+                                <input type="hidden" value="2" name="type" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div style="width:50%;">
+                                <label class="control-label">日程描述</label>
+                                <textarea id="des" class="form_input" style="height:80px"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group" style="height:40px;padding-top:10px;">
+                            <!-- Text input-->
+                            <div style="width:50%;float:left">
+                                <label class="control-label" for="input01">开始时间</label>
+                                <input name="start" type="text" class="datetimepicker form_input" data-date-format="yyyy-mm-dd hh:ii">
+                            </div>
+
+                            <div style="width:50%;float:left;">
+                                <label class="control-label" for="input01">结束时间</label>
+                                <input name="end" type="text" class="datetimepicker form_input" data-date-format="yyyy-mm-dd hh:ii">
+                            </div>
+                        </div>
+
+                        <div class="control-group" style="height:40px;padding-top:10px;">
+                            <!-- Text input-->
+                            <div style="width:50%">
+                                <label class="control-label" for="input01">提醒时间</label>
+                                <select name="taskalert" style="height:23px;" class="form_input">
+                                    <option value="0">无</option>
+                                    <option value="5">开始前5分钟</option>
+                                    <option value="10">开始前10分钟</option>
+                                    <option value="30">开始前30分钟</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr style="align=center;color:gray;font-size:1px;" />
+
+                        <div class="control-group" style="height:40px;">
+                            <!-- Text input-->
+                            <div style="width:50%">
+                                <label class="control-label">全班同学：</label>
+                                <input id="choseAll" class="choseAll" value="1" type="checkbox" />
+                            </div>
+                        </div>
+
+                        <div id="choseStu" class="pre-scrollable choseStu" style="width:85%;height:100px; border:solid 1px; padding:10px;">
+
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_classAdd" type="button" class="btn btn-default">添加</button>
+                    <button type="button" class="btn btn-primary btn_classCancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end 添加班级日程-->
+
+    <!--修改班级日程-->
+    <div class="modal fade modalPanel" id="editClassCalendarWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title" id="myModalLabel">修改班级日程</h5>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal">
+
+                        <div class="control-group" style="height:40px;">
+                            <!-- Text input-->
+                            <div style="width:50%;float:left;">
+                                <label class="control-label" for="input01">日程标题</label>
+                                <input id="tasktitle" class="input-xlarge" type="text" name="title" value="">
+                                <input name="taskid" value="" type="hidden" /><!--事件Id-->
+                            </div>
+
+                            <div style="width:50%;float:left;">
+                                <label class="control-label" for="input01">日程类型：</label>
+                                <label class="control-label" style="color:orange">班级日程</label>
+                                <input type="hidden" value="2" name="type" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div style="width:50%;">
+                                <label class="control-label">日程描述</label>
+                                <textarea id="des" class="form_input" style="height:80px"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group" style="height:40px;padding-top:10px;">
+                            <!-- Text input-->
+                            <div style="width:50%;float:left">
+                                <label class="control-label" for="input01">开始时间</label>
+                                <input name="start" type="text" class="datetimepicker form_input" data-date-format="yyyy-mm-dd hh:ii">
+                            </div>
+
+                            <div style="width:50%;float:left;">
+                                <label class="control-label" for="input01">结束时间</label>
+                                <input name="end" type="text" class="datetimepicker form_input" data-date-format="yyyy-mm-dd hh:ii">
+                            </div>
+                        </div>
+
+                        <div class="control-group" style="height:40px;padding-top:10px;">
+                            <!-- Text input-->
+                            <div style="width:50%">
+                                <label class="control-label" for="input01">提醒时间</label>
+                                <select name="taskalert" style="height:23px;" class="form_input">
+                                    <option value="0">无</option>
+                                    <option value="5">开始前5分钟</option>
+                                    <option value="10">开始前10分钟</option>
+                                    <option value="30">开始前30分钟</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr style="align=center;color:gray;font-size:1px;" />
+
+                        <div class="control-group" style="height:40px;">
+                            <!-- Text input-->
+                            <div style="width:50%">
+                                <label class="control-label">全班同学：</label>
+                                <input id="choseAll" class="choseAll" value="1" type="checkbox" />
+                            </div>
+                        </div>
+
+                        <div id="choseStu" class="pre-scrollable choseStu" style="width:85%;height:100px; border:solid 1px; padding:10px;">
+
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_classEdit" type="button" class="btn btn-default">修改</button>
+                    <button id="btn_classDelete" type="button" class="btn btn-danger">删除</button>
+                    <button type="button" class="btn btn-primary btn_classCancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end 修改班级日程-->
+
+    <div class="navbar navbar-default" id="navbar">
+
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand" href="#">
+                    <small style="color:white;padding-left:10px;">
+                        <i class="glyphicon glyphicon-leaf"></i>
+                    </small>
+                </a>
+            </div>
+            <div class="navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    <li class="grey active" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-tasks" style="color:white"></i>
+                            <span class="badge badge-grey">我的日程</span>
+                        </a>
+
+                    </li>
+
+                    <li class="purple">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-bell" style="color:white;"></i>
+                            <span class="badge badge-important" style="background-color:palevioletred">班级日程</span>
+                        </a>
+
+                    </li>
+
+                    <li class="green">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-envelope icon-animated-vertical" style="color:white;"></i>
+                            <span class="badge badge-success" style="background-color:lightgreen">课程日程</span>
+                        </a>
+
+                    </li>
+
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle" id="dropdownMenu" aria-haspopup="true" aria-expanded="true">
+                            <!--<img class="nav-user-photo" src="/846/other/assets/avatars/user.jpg" alt="Jason's Photo">-->
+                            <span class="user-info" style="color:white">
+                                <small>欢迎 &nbsp;</small>
+                            </span>
+                            <i class="glyphicon glyphicon-chevron-down" style="color:white;font-size:10px"></i>
+                        </a>
+
+                        <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" aria-labelledby="dropdownMenu">
+                            <li>
+                                <a href="#">
+                                    <i class="icon-cog"></i>
+                                    修改密码
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="icon-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="cl"></div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div id='calendar'></div>
+    </div>
+
+    <script>
+
+	    $(document).ready(function() {
+
+		    /* initialize the calendar
+		    -----------------------------------------------------------------*/
+
+		    $('#calendar').fullCalendar({
+			    header: {
+			        left: 'prev,next today',
+			        center: 'title',
+			        right: 'month,agendaWeek,agendaDay'
+			    },
+
+			    monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+			    monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+			    dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+			    dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+			    today: ["今天"],
+			    firstDay: 1,
+			    buttonText: {
+			        //prev: '&laquo;',
+			        //next: '&raquo;',
+			        //prevYear: '&nbsp;&lt;&lt;&nbsp;',
+			        //nextYear: '&nbsp;&gt;&gt;&nbsp;',
+			        today: '今天',
+			        month: '月',
+			        week: '周',
+			        day: '日'
+			    },
+
+		        //允许用户通过单击或拖动选择日历中的对象，包括天和时间。
+			    selectable: true,
+
+		        //当点击或拖动选择时间时，显示默认加载的提示信息，该属性只在周/天视图里可用。
+			    selectHelper: true,
+
+		        //当点击页面日历以外的位置时，自动取消当前的选中状态。
+			    unselectAuto: true,
+
+
+			    dayClick: function (date, allDay, jsEvent, view) {
+			    },
+			    loading: function (bool) {
+			        if (bool) $('#loading').show();
+			        else $('#loading').hide();
+			    },
+
+
+		        /*
+                        添加日程事件
+                        start: 被选中区域的开始时间
+                        end: 被选中区域的结束时间
+                        jsEvent: jascript对象
+                        view: 当前视图对象
+                    */
+			    select: function (start, end, jsEvent, view) {
+			        //添加日程事件
+			        var $win = $('#addCalendarWin');
+			        var $win3 = $('#addClassCalendarWin');
+			        var $win2 = $('#selectWin');
+
+			        $win.find('input[name="start"]').val(start.format('YYYY-MM-DD HH:mm'));
+			        $win.find('input[name="end"]').val(end.format('YYYY-MM-DD HH:mm'));
+			        $win3.find('input[name="start"]').val(start.format('YYYY-MM-DD HH:mm'));
+			        $win3.find('input[name="end"]').val(end.format('YYYY-MM-DD HH:mm'));
+
+			        $win2.modal('show');
+			    },
+
+			    eventClick: function (event, jsEvent, view) {
+			        //修改日程事件
+			        var tasktype = event.className;
+			        var taskid = event.id;
+			        var $win;
+
+			        if (tasktype == 1)//我的
+			        {
+			            $win = $('#editCalendarWin');
+
+			            $.ajax({
+			                url: '/Wujiajie/Student/GetOneMyTask',
+			                type: 'post',
+			                data: {
+			                    "id": event.id,
+			                },
+			                dataType: 'json',
+			                success: function (res) {
+
+			                    $win.find('option').siblings().removeAttr("selected");
+
+			                    $win.find('input[name="userid"]').val(res[0].userid);
+			                    $win.find('input[name="type"]').val(res[0].type);
+			                    $win.find('select[name="taskalert"]').find("option[value='" + res[0].taskAlert + "']").attr("selected", "selected");
+			                    $win.find('textarea[id="des"]').val(res[0].des);
+
+			                }, error: function () {
+			                    alert("数据获取错误！")
+			                }
+
+			            });
+
+			        } else if (tasktype == 2)//班级
+			        {
+			            $win = $('#editClassCalendarWin');
+
+			            var classid = @(classid)//Session["classId"]
+                        var userid = @(userid);
+
+                        //判断是否有删除修改权限
+	                    $.ajax({
+	                        url: "/ClassTask/HasPerm",
+	                        type: 'post',
+	                        data: {
+	                            "taskid":taskid,
+	                            "userid": userid,
+	                        },
+	                        success: function (res) {
+	                            if(res == 0)
+	                            {
+	                                $win.find('#btn_classEdit').attr("disabled","disabled");
+	                                $win.find('#btn_classDelete').attr("disabled","disabled");
+	                            }else
+	                            {
+	                                $win.find('#btn_classEdit').removeAttr("disabled","disabled");
+	                                $win.find('#btn_classDelete').removeAttr("disabled","disabled");
+	                            }
+	                        }
+	                    });
+
+                        //获取所有该班学生
+			            $.ajax({
+			                url: '/Wujiajie/ClassTask/GetAllStu',
+			                type: 'post',
+			                data: {
+			                    "classid": classid
+			                },
+			                dataType: 'json',
+			                success: function (res) {
+
+			                    var $choseStu = $win.find('#choseStu');
+
+			                    $choseStu.empty();
+
+			                    for (var i = 0; i < res.length; i++) {
+			                        
+			                        var item = res[i];
+			                        var str = "<div class=\"aStu\" style=\"width:20%;float:left;\"><input value=\"" + res[i].stuId + "\" type=\"checkbox\"/><label style=\"padding-left:5px;\">" + res[i].stuName + "</label></div>";
+
+			                        $choseStu.append(str);
+			                    }
+
+			                }, error: function () {
+			                    alert("数据获取错误！")
+			                }
+			            });
+
+			            $.ajax({
+			                url: '/Wujiajie/ClassTask/GetOneClassTask',
+			                type: 'post',
+			                data: {
+			                    "id": event.id,
+			                },
+			                dataType: 'json',
+			                success: function (res) {
+
+			                    $win.find('option').siblings().removeAttr("selected");
+
+			                    $win.find('input[name="type"]').val(res[0].type);
+			                    $win.find('select[name="taskalert"]').find("option[value='" + res[0].taskAlert + "']").attr("selected", "selected");
+			                    $win.find('textarea[id="des"]').val(res[0].des);
+
+			                    //全班还是部分，显示在界面上
+
+			                    $win.find('input').prop('checked', false);
+
+			                    var isAll = res[0].isAll;
+			                    if(isAll == 1)
+			                    {
+			                        $win.find('#choseAll').prop('checked', true);
+			                        $win.find('.choseStu').hide();
+			                    }else
+			                    {
+			                        $win.find('.choseStu').show();
+			                        var arr = res[0].students.split(',');
+			                        
+			                        for(var i = 0;i < arr.length;i++)
+			                        {
+			                            $win.find('input[value="' + arr[i] + '"]').prop('checked',true);
+			                        }
+			                    }
+
+			                }, error: function () {
+			                    alert("数据获取错误！")
+			                }
+
+			            });
+			        } else if(tasktype == 3)//课程
+			        {
+
+			        }
+
+			        $win.find('input[name="taskid"]').val(event.id);
+			        $win.find('input[name="title"]').val(event.title);
+			        $win.find('input[name="start"]').val(event.start.format('YYYY-MM-DD HH:mm'));
+			        $win.find('input[name="end"]').val(event.end.format('YYYY-MM-DD HH:mm'));
+
+			        if (tasktype == 1)
+			        {
+			            $win.rhui('window').show();
+			        } else
+			        {
+			            $win.modal("show");
+			        }
+
+			        // change the border color just for fun
+			        $(this).css('border-color', 'red');
+			    },
+			    events: function (start, end,timezone, callback) {
+
+			        //var params = {};
+			        $.ajax({
+			            url: '/Home/GetAllTask',
+			            type: 'post',
+			            data: {
+			                "userlevel":1,
+			                "userid":3,
+                            "classid":2,
+			            },
+			            dataType: 'json',
+			            success: function (res) {
+			                var events = [];
+
+			                for (var i = 0; i < res.length; i++) {
+			                    var plan = res[i];
+
+			                    var title = plan.title;
+			                    var id = plan.id;
+			                    var start = new Date(plan.start);
+			                    var end = new Date(plan.end);
+			                    var des = new String(plan.des);
+			                    var type = plan.type;
+			                    var color = "stellblue";
+
+			                    if (type == 2)
+			                        color = "#FF7F00";
+			                    else if (type == 3)
+			                        color = "#CD2626";
+
+			                    //var allDay = plan.isAllday == 0 ? false : true;
+			                    events.push({
+			                        id: id,
+			                        title: title,
+			                        start: start,
+			                        end: end,
+			                        className: type,
+                                    color:color,
+			                    });
+
+			                }
+
+			                callback(events);
+			            },error:function(){
+			            alert("数据获取错误！")
+			        }
+
+			        });
+
+			    },
+
+			    navLinks: true, // can click day/week names to navigate views
+			    eventLimit: true, // allow "more" link when too many events
+			    editable: false,//禁止拖动事件
+			    //droppable: true, // this allows things to be dropped onto the calendar
+			    drop: function() {
+				    // is the "remove after drop" checkbox checked?
+				    if ($('#drop-remove').is(':checked')) {
+					    // if so, remove the element from the "Draggable Events" list
+					    $(this).remove();
+				    }
+			    }
+		    });
+
+	        //初始化新建日程窗口
+		    (function () {
+		        var $win = $('#addCalendarWin');
+
+		        //初始化日期控件
+		        $win.find('input[name="start"]').datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+		        $win.find('input[name="end"]').datetimepicker({ format: 'yyyy-mm-dd hh:ii' });
+
+		        $win.rhui('window', {
+		            title: '新建我的日程',
+		            width: 400,
+		            height: 265,
+		            buttons: [{
+		                text: '确定',
+		                cls: 'rhui-btn-primary',
+		                click: function (toolbar, win) {
+
+		                    var title = $win.find('input[name="title"]').val();
+		                    var id = $win.find('input[name="userid"]').val();
+		                    var type = $win.find('input[name="type"]').val();
+		                    var des = $win.find('textarea[id="content"]').val();
+		                    var start = $win.find('input[name="start"]').val();
+		                    var end = $win.find('input[name="end"]').val();
+		                    var taskalert = $win.find('select[name="taskalert"]').val();
+
+		                    $.ajax({
+		                        url: '/Wujiajie/Student/IsChongtu',
+		                        type: 'post',
+		                        data: {
+		                            "start": start,
+		                            "end": end,
+		                        },
+		                        success: function (res) {
+
+		                            var flag = 0;
+
+		                            if (res == 1) {
+		                                flag = 1;
+		                            } else {
+		                                alert("存在冲突！");
+		                                //是否添加
+		                            }
+
+		                            //添加我的日程
+		                            if (flag == 1) {
+
+		                                $.ajax({
+		                                    url: '/Wujiajie/Student/AddMyTask',
+		                                    type: 'post',
+		                                    data: {
+		                                        "title": title,
+		                                        "id": id,
+		                                        "type": type,
+		                                        "des": des,
+		                                        "start": start,
+		                                        "end": end,
+		                                        "alert": taskalert,
+		                                    },
+		                                    success: function (res) {
+
+		                                        if (res == 1)
+		                                        {
+		                                            alert('标题不能为空！');
+
+		                                        } else if (res == 2)
+		                                        {
+		                                            alert('登录超时！');
+
+		                                        } else if (res == 3) {
+		                                            alert('创建失败！');
+
+		                                        } else
+		                                        {
+		                                            alert('日程已新建');
+		                                            win.hide();
+		                                            location.href = "/Home/Index";
+		                                        }
+
+		                                    }, error: function () {
+		                                        alert("数据获取错误！")
+		                                    }
+		                                });
+		                            }
+
+		                        }, error: function () {
+		                            alert("数据获取错误！")
+		                        }
+		                    });
+
+		                }
+		            }, {
+		                text: '取消',
+		                click: function (toolbar, win) {
+		                    win.hide();
+		                }
+		            }]
+		        }).hide();
+		    })();
+
+	        //初始化修改日程窗口
+		    (function(){
+		        var $win = $('#editCalendarWin');
+
+		        //初始化日期控件
+		        $win.find('input[name="start"]').datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+		        $win.find('input[name="end"]').datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+
+		        $win.rhui('window', {
+		            title: '修改日程',
+		            width: 400,
+		            height: 265,
+		            buttons: [{
+		                text: '修改',
+		                cls: 'rhui-btn-primary',
+		                click: function(toolbar, win){
+
+		                    var taskid = $win.find('input[name="taskid"]').val();
+		                    var title = $win.find('input[name="title"]').val();
+		                    var userid = $win.find('input[name="userid"]').val();
+		                    var type = $win.find('input[name="type"]').val();
+		                    var des = $win.find('textarea[id="des"]').val();
+		                    var start = $win.find('input[name="start"]').val();
+		                    var end = $win.find('input[name="end"]').val();
+		                    var taskalert = $win.find('select[name="taskalert"]').val();
+
+		                    $.ajax({
+		                        url: '/Wujiajie/Student/IsChongtu',
+		                        type: 'post',
+		                        data: {
+		                            "taskid":taskid,
+		                            "start": start,
+		                            "end": end,
+		                        },
+		                        success: function (res) {
+
+		                            var flag = 0;
+
+		                            if (res == 1) {
+		                                flag = 1;
+		                            } else {
+		                                alert("存在冲突！");
+		                                //是否修改
+		                            }
+
+		                            //修改我的日程
+		                            if (flag == 1) {
+
+		                                $.ajax({
+		                                    url: '/Wujiajie/Student/EditMyTask',
+		                                    type: 'post',
+		                                    data: {
+		                                        "title": title,
+		                                        "userid": userid,
+		                                        "type": type,
+		                                        "des": des,
+		                                        "start": start,
+		                                        "end": end,
+		                                        "alert": taskalert,
+		                                        "taskid":taskid,
+		                                    },
+		                                    success: function (res) {
+
+		                                        if (res == 1) {
+		                                            alert('标题不能为空！');
+
+		                                        } else if (res == 2) {
+		                                            alert('登录超时！');
+
+		                                        } else if (res == 3) {
+		                                            alert('修改失败！');
+
+		                                        } else {
+		                                            alert('日程已修改');
+		                                            win.hide();
+		                                            location.href = "/Home/Index";
+		                                        }
+
+		                                    }, error: function () {
+		                                        alert("数据获取错误！")
+		                                    }
+
+		                                });
+		                            }
+
+		                        }, error: function () {
+		                            alert("数据获取错误！")
+		                        }
+		                    });
+
+		                }
+		            },{
+		                text: '删除',
+		                cls: 'rhui-btn-danger',
+		                click: function(toolbar, win){
+		                    var taskid = $win.find('input[name="taskid"]').val();
+		                    $.ajax({
+		                        url: '/Wujiajie/Student/DeleteMyTask',
+		                        type: 'post',
+		                        data: {
+		                            "taskid":taskid,
+		                        },
+		                        success: function (res) {
+
+		                            if(res == 0)
+		                                alert("删除失败！");
+		                            else
+		                            {
+		                                alert("日程已删除");
+		                                win.hide();
+		                            }
+
+		                        }, error: function () {
+		                            alert("数据获取错误！")
+		                        }
+		                    });
+
+		                }
+		            },{
+		                text: '取消',
+		                click: function (toolbar, win) {
+
+		                    win.hide();
+		                }
+		            }]
+		        }).hide();
+		    })();
+	    });
+
+        //点击弹出我的日程添加
+	    $("#myTask").click(function () {
+
+	        var $win = $('#addCalendarWin');
+	        $win.rhui('window').show();
+	        $('#selectWin').modal("hide");
+	    });
+
+        //点击弹出班级日程添加
+	    $("#classTask").click(function () {
+
+	        var $win = $('#addClassCalendarWin');
+	        var classid = @(classid);//Session["classId"]
+
+	        $.ajax({
+	            url: '/Wujiajie/ClassTask/GetAllStu',
+	            type: 'post',
+	            data: {
+	                "classid":classid
+	            },
+                dataType:'json',
+                success: function (res) {
+                    var $choseStu = $win.find('#choseStu');
+                    $choseStu.empty();
+
+	                for(var i=0;i < res.length;i++)
+	                {
+	                    var item = res[i];
+	                    var str = "<div class=\"aStu\" style=\"width:20%;float:left;\"><input value=\"" + res[i].stuId + "\" type=\"checkbox\"/><label style=\"padding-left:5px;\">" + res[i].stuName + "</label></div>";
+
+	                    $choseStu.append(str);
+	                }
+
+	            }, error: function () {
+	                alert("数据获取错误！")
+	            }
+	        });
+
+	        $win.modal("show");
+	        $('#selectWin').modal("hide");
+	    });
+
+        //点击弹出课程日程添加
+	    $("#courseTask").click(function () {
+
+
+	    });
+
+        //班级相关
+	    $('.datetimepicker').datetimepicker();
+
+	    $("#editClassCalendarWin .choseAll").change(function () {
+	        if ($('#editClassCalendarWin .choseAll').is(':checked')) {
+	            $('#editClassCalendarWin .choseStu').hide();
+	        } else {
+	            $('#editClassCalendarWin .choseStu').show();
+	        }
+	    });
+
+	    $("#addClassCalendarWin .choseAll").change(function () {
+	        if ($('#addClassCalendarWin .choseAll').is(':checked')) {
+	            $('#addClassCalendarWin .choseStu').hide();
+	        } else {
+	            $('#addClassCalendarWin .choseStu').show();
+	        }
+	    });
+
+	    $('#btn_classAdd').click(function () {
+
+	        var $win = $('#addClassCalendarWin');
+
+	        //判定是否选择了学生
+	        var snum = 0;
+	        var sitem = $win.find('#choseStu').find('input');
+	        for(var i=0;i < sitem.length;i++)
+	        {
+	            if(sitem[i].checked == true)
+	                snum++;
+	        }
+
+	        if(($win.find('.choseAll'))[0].checked == true)
+	            snum = 1;
+	        //end判定是否选择了学生
+
+	        if(snum == 0)
+	        {
+	            alert("请选择学生or全班学生！");
+	        }else if($win.find('input[id="tasktitle"]').val() == "") {
+	            $(".tasktitle").focus();
+	            alert("标题不能为空！");
+	        }
+	        else {
+
+	            var WPeople = "@userName";
+	            var userid = @userid;
+	            var classid = @classid;
+
+	            var taskid = -1;
+	            var start = $win.find('input[name="start"]').val();
+	            var end = $win.find('input[name="end"]').val();
+	            var title = $win.find('input[name="title"]').val();
+	            var type = $win.find('input[name="type"]').val();
+	            var des = $win.find('textarea[id="des"]').val();
+	            var taskAlert = $win.find('select[name="taskalert"]').val();
+
+	            var isAllclass = 0;
+	            var students = "";
+
+	            if ($win.find('#choseAll').is(':checked')) {
+	                isAllclass = 1;
+	            }else if(snum == sitem.length){
+	                isAllclass = 1;
+	            }else
+	            {
+	                //给students赋值
+	                var inputs = $win.find('#choseStu').find('input');
+	                for(var i=0;i< inputs.length;i++)
+	                {
+	                    if (inputs[i].checked == true) {
+	                        students += (inputs[i].value + ",");
+	                    }
+	                }
+	            }
+
+	            $.ajax({
+	                url: '/Wujiajie/ClassTask/IsChongtu',
+	                type: 'post',
+	                data: {
+                        "taskid":taskid,
+	                    "start": start,
+	                    "end": end,
+	                },
+	                success: function (res) {
+
+	                    var flag = 0;
+
+	                    if (res == 1) {
+	                        flag = 1;
+	                    } else {
+	                        alert("存在冲突！");
+	                        //是否添加
+	                    }
+
+	                    //添加班级日程
+	                    if (flag == 1) {
+
+	                        $.ajax({
+	                            url: "/ClassTask/AddClassTask",
+	                            type: 'post',
+	                            data: {
+	                                "title": title,
+	                                "type": type,
+	                                "des": des,
+	                                "start": start,
+	                                "end": end,
+	                                "alert": taskAlert,
+	                                "isAll": isAllclass,
+	                                "students":students,
+	                                "WPeople":WPeople,
+	                                "classid":classid,
+	                                "userid":userid,
+	                            },
+	                            success: function (res) {
+
+	                                alert("添加班级日程成功！");
+	                                location.href = "/Home/Index";
+	                            }
+	                        });
+
+	                        $win.modal("hide");
+	                    }
+
+	                }, error: function () {
+	                    alert("数据获取错误！")
+	                }
+	            });
+	        }
+
+	    });
+
+	    $('.btn_classCancel').click(function () {
+	        $('.modalPanel').modal('hide');
+
+	    });
+
+	    $('#btn_classEdit').click(function () {
+
+	        var $win = $('#editClassCalendarWin');
+	        var taskid = $win.find('input[name="taskid"]').val();
+            
+
+	        //判定是否选择了学生
+	        var snum = 0;
+	        var sitem = $win.find('#choseStu').find('input');
+	        for(var i=0;i < sitem.length;i++)
+	        {
+	            if(sitem[i].checked == true)
+	                snum++;
+	        }
+
+	        if(($win.find('#choseAll'))[0].checked == true)
+	            snum = 1;
+	        //end判定是否选择了学生
+
+	        if(snum == 0)
+	        {
+	            alert("请选择学生or全班学生！");
+	        }else if ($win.find('input[id="tasktitle"]').val() == "") {
+	            $("#tasktitle").focus();
+	            alert("标题不能为空！");
+	        }
+	        else {
+
+	            var WPeople = "@userName";
+                var classid = @classid;
+
+	            var start = $win.find('input[name="start"]').val();
+	            var end = $win.find('input[name="end"]').val();
+	            var title = $win.find('input[name="title"]').val();
+	            var type = $win.find('input[name="type"]').val();
+	            var des = $win.find('textarea[id="des"]').val();
+	            var taskAlert = $win.find('select[name="taskalert"]').val();
+
+	            var isAllclass = 0;
+	            var students = "";
+
+	            if ($win.find('#choseAll').is(':checked')) {
+	                isAllclass = 1;
+	            }else if(snum == sitem.length){
+	                isAllclass = 1;
+	            } else {
+	                //给students赋值
+	                var inputs = $win.find('#choseStu').find('input');
+	                for (var i = 0; i < inputs.length; i++) {
+	                    if (inputs[i].checked == true) {
+	                        students += (inputs[i].value + ",");
+	                    }
+	                }
+	            }
+
+	            $.ajax({
+	                url: '/Wujiajie/ClassTask/IsChongtu',
+	                type: 'post',
+	                data: {
+                        "taskid":taskid,
+	                    "start": start,
+	                    "end": end,
+	                },
+	                success: function (res) {
+
+	                    var flag = 0;
+
+	                    if (res == 1) {
+	                        flag = 1;
+	                    } else {
+	                        alert("存在冲突！");
+	                        //是否修改
+	                    }
+
+	                    //修改班级日程
+	                    if (flag == 1) {
+
+	                        $.ajax({
+	                            url: "/ClassTask/EditClassTask",
+	                            type: 'post',
+	                            data: {
+                                    "taskid":taskid,
+	                                "title": title,
+	                                "type": type,
+	                                "des": des,
+	                                "start": start,
+	                                "end": end,
+	                                "alert": taskAlert,
+	                                "isAll": isAllclass,
+	                                "students": students,
+	                                "WPeople":WPeople,
+                                    "classid":classid,
+	                            },
+	                            success: function (res) {
+
+	                                if(res == 0)
+	                                {
+	                                    alert("修改成功！");
+	                                    $win.modal("hide");
+	                                }else
+	                                {
+	                                    alert("修改失败！");
+	                                }
+
+	                            }
+	                        });
+
+	                        $win.modal("hide");
+	                    }
+
+	                }, error: function () {
+	                    alert("数据获取错误！")
+	                }
+	            });
+	        }
+
+	    });
+
+        //删除班级日程
+        $('#btn_classDelete').click(function(){
+            var $win = $('#editClassCalendarWin');
+            var taskid = $win.find('input[name="taskid"]').val();
+
+            $.ajax({
+                url: '/Wujiajie/ClassTask/DeleteClassTask',
+                type: 'post',
+                data: {
+                    "taskid":taskid,
+                },
+                success: function (res) {
+
+                    if(res == 0)
+                        alert("删除失败！");
+                    else
+                    {
+                        alert("日程已删除");
+                        $win.modal("hide");
+                    }
+
+                }, error: function () {
+                    alert("数据获取错误！")
+                }
+            });
+        });
+
+
+        @*//存为草稿
+        $('#btn_classSave').click(function () {
+            var $win = $('#addClassCalendarWin');
+
+            //判定是否选择了学生
+            var snum = 0;
+            var sitem = $win.find('#choseStu').find('input');
+            for(var i=0;i < sitem.length;i++)
+            {
+                if(sitem[i].checked == true)
+                    snum++;
+            }
+
+            if(($win.find('.choseAll'))[0].checked == true)
+                snum = 1;
+            //end判定是否选择了学生
+
+            if(snum == 0)
+            {
+                alert("请选择学生or全班学生！");
+            }else if($win.find('input[id="tasktitle"]').val() == "") {
+                $(".tasktitle").focus();
+                alert("标题不能为空！");
+            }
+            else {
+
+                var WPeople = "@userName";
+                var userid = @userid;
+                var classid = @classid;
+
+                var taskid = -1;
+                var start = $win.find('input[name="start"]').val();
+                var end = $win.find('input[name="end"]').val();
+                var title = $win.find('input[name="title"]').val();
+                var type = $win.find('input[name="type"]').val();
+                var des = $win.find('textarea[id="des"]').val();
+                var taskAlert = $win.find('select[name="taskalert"]').val();
+
+                var isAllclass = 0;
+                var students = "";
+
+                if ($win.find('#choseAll').is(':checked')) {
+                    isAllclass = 1;
+                }else if(snum == sitem.length){
+                    isAllclass = 1;
+                }else
+                {
+                    //给students赋值
+                    var inputs = $win.find('#choseStu').find('input');
+                    for(var i=0;i< inputs.length;i++)
+                    {
+                        if (inputs[i].checked == true) {
+                            students += (inputs[i].value + ",");
+                        }
+                    }
+                }
+
+                $.ajax({
+                    url: "/ClassTask/AddClassTask",
+                    type: 'post',
+                    data: {
+                        "title": title,
+                        "type": type,
+                        "des": des,
+                        "start": start,
+                        "end": end,
+                        "alert": taskAlert,
+                        "isAll": isAllclass,
+                        "students":students,
+                        "WPeople":WPeople,
+                        "classid":classid,
+                        "userid":userid,
+                        "state":1,
+                    },
+                    success: function (res) {
+
+                        alert("已存为草稿！");
+                        location.href = "/Home/Index";
+                    }
+                });
+            }
+        });*@
+
+
+    </script>
+
+</body>
+</html>
+
+

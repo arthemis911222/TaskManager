@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "_Layout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <link href='~/fullcalendar-3.4.0/fullcalendar.min.css' rel='stylesheet' />
+    <link href='~/fullcalendar-3.4.0/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <script src='~/fullcalendar-3.4.0/lib/moment.min.js'></script>
+    <script src='~/fullcalendar-3.4.0/lib/jquery.min.js'></script>
+    <script src='~/fullcalendar-3.4.0/lib/jquery-ui.min.js'></script>
+    <script src='~/fullcalendar-3.4.0/fullcalendar.min.js'></script>
+    <script>
+
+	$(document).ready(function() {
+
+
+		/* initialize the external events
+		-----------------------------------------------------------------*/
+
+		$('#external-events .fc-event').each(function() {
+
+			// store data so the calendar knows to render an event upon drop
+			$(this).data('event', {
+				title: $.trim($(this).text()), // use the element's text as the event title
+				stick: true // maintain when user navigates (see docs on the renderEvent method)
+			});
+
+			// make the event draggable using jQuery UI
+			$(this).draggable({
+				zIndex: 999,
+				revert: true,      // will cause the event to go back to its
+				revertDuration: 0  //  original position after the drag
+			});
+
+		});
+
+
+		/* initialize the calendar
+		-----------------------------------------------------------------*/
+
+		$('#calendar').fullCalendar({
+			header: {
+			    left: 'prev,next today',
+			    center: 'title',
+			    right: 'month,agendaWeek,agendaDay'
+			},
+
+			monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+			monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+			dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+			dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+			today: ["今天"],
+			firstDay: 1,
+			buttonText: {
+			    prev: '&laquo;',
+			    next: '&raquo;',
+			    prevYear: '&nbsp;&lt;&lt;&nbsp;',
+			    nextYear: '&nbsp;&gt;&gt;&nbsp;',
+			    today: '今天',
+			    month: '月',
+			    week: '周',
+			    day: '日'
+			},
+			viewDisplay: function (view) {
+			    //动态把数据查出，按照月份动态查询
+			    var viewStart = $.fullCalendar.formatDate(view.start, "yyyy-MM-dd HH:mm:ss");
+			    var viewEnd = $.fullCalendar.formatDate(view.end, "yyyy-MM-dd HH:mm:ss");
+			    $("#calendar").fullCalendar('removeEvents');
+			    //通过post 请求一般处理程序来返回需要展现的信息(start与end为需要传递的参数，在本文中没有用到可以忽略)
+                $.post("/DateHandle/Index", { start: viewStart, end: viewEnd }, function (data) {
+
+                    var resultCollection = jQuery.parseJSON(data);
+                    $.each(resultCollection, function (index, term) {
+                        $("#calendar").fullCalendar('renderEvent', term, true);
+                    });
+
+                }); //把从后台取出的数据进行封装以后在页面上以fullCalendar的方式进行显示
+			},
+
+       
+			dayClick: function (date, allDay, jsEvent, view) {
+			},
+			loading: function (bool) {
+			    if (bool) $('#loading').show();
+			    else $('#loading').hide();
+			},
+        
+
+		    //#region 数据绑定上去后添加相应信息在页面上(一开始加载数据时运行)
+			eventAfterRender: function (event, element, view) {
+
+			    var fstart = $.fullCalendar.formatDate(event.start, "HH:mm");
+			    var fend = $.fullCalendar.formatDate(event.end, "HH:mm");
+			    var confbg = '<span class="fc-event-bg"></span>';
+			    if (view.name == "month") {//按月份                
+			        var evtcontent = '<div class="fc-event-vert"><a>';
+			        evtcontent = evtcontent + confbg;
+			        //evtcontent = evtcontent + '<span class="fc-event-titlebg">' + fstart + " - " + fend  + event.fullname + '</span>';   
+			        evtcontent = evtcontent + '<span class="fc-event-titlebg">' + event.fullname + '</span>';
+			        element.html(evtcontent);
+			    } else if (view.name == "agendaWeek") {//按周
+
+			        var evtcontent = '<a>';
+			        evtcontent = evtcontent + confbg;
+			        evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + "-" + fend + '</span>';
+			        evtcontent = evtcontent + '<span>' + event.fullname + '</span>';
+			        element.html(evtcontent);
+			    } else if (view.name == "agendaDay") {//按日
+
+			        var evtcontent = '<a>';
+			        evtcontent = evtcontent + confbg;
+			        evtcontent = evtcontent + '<span class="fc-event-time">' + fstart + " - " + fend + '</span>';
+			        element.html(evtcontent);
+			    }
+			},
+		    //#endregion
+
+		    //#region 鼠标放上去显示信息
+			eventMouseover: function (calEvent, jsEvent, view) {           
+			    //var fstart = $.fullCalendar.formatDate(calEvent.start, "yyyy/MM/dd HH:mm");
+			    //var fend = $.fullCalendar.formatDate(calEvent.end, "yyyy/MM/dd HH:mm");
+			    //$(this).attr('title', fstart + " - " + fend + " " + calEvent.fullname);
+			    鼠标悬浮到title的时候可以设置展现哪些信息
+			    $(this).attr('title', calEvent.fullname);
+			    $(this).css('font-weight', 'normal');
+			    //            $(this).tooltip({
+			    //                effect: 'toggle',
+			    //                cancelDefault: true
+			    //            });
+			},
+			eventClick: function (event) {             
+          
+			},
+			events: [],
+		    //#endregion
+
+			editable: true,
+			droppable: true, // this allows things to be dropped onto the calendar
+			drop: function() {
+				// is the "remove after drop" checkbox checked?
+				if ($('#drop-remove').is(':checked')) {
+					// if so, remove the element from the "Draggable Events" list
+					$(this).remove();
+				}
+			}
+		});
+
+
+	});
+
+    </script>
+    <style>
+        body {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        }
+
+        #wrap {
+            width: 1100px;
+            margin: 0 auto;
+        }
+
+        #external-events {
+            float: left;
+            width: 150px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+        }
+
+            #external-events h4 {
+                font-size: 16px;
+                margin-top: 0;
+                padding-top: 1em;
+            }
+
+            #external-events .fc-event {
+                margin: 10px 0;
+                cursor: pointer;
+            }
+
+            #external-events p {
+                margin: 1.5em 0;
+                font-size: 11px;
+                color: #666;
+            }
+
+                #external-events p input {
+                    margin: 0;
+                    vertical-align: middle;
+                }
+
+        #calendar {
+            float: right;
+            width: 900px;
+        }
+    </style>
+</head>
+<body>
+    <div id='wrap'>
+
+        <div id='external-events'>
+            <h4>Draggable Events</h4>
+            <div class='fc-event'>My Event 1</div>
+            <div class='fc-event'>My Event 2</div>
+            <div class='fc-event'>My Event 3</div>
+            <div class='fc-event'>My Event 4</div>
+            <div class='fc-event'>My Event 5</div>
+            <p>
+                <input type='checkbox' id='drop-remove' />
+                <label for='drop-remove'>remove after drop</label>
+            </p>
+        </div>
+
+        <div id='calendar'></div>
+
+        <div style='clear:both'></div>
+
+    </div>
+</body>
+</html>

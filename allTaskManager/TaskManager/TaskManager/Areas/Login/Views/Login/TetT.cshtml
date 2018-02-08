@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = "~/Areas/Login/Views/Shared/_Layout.cshtml";
+
+    List<TaskManager.Model.T_Task_Course> list = ViewBag.list;
+
+}
+
+@{
+    foreach (TaskManager.Model.T_Task_Course item in list)
+    {
+        <option value=@item.Id>@item.Name</option>
+    }
+}
+
+

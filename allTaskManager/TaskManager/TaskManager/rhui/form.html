@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link type="text/css" rel="stylesheet" href="css/rhui.css" />
+	<link type="text/css" rel="stylesheet" href="jslib/jquery-datetimepicker/jquery.datetimepicker.css" />
+	<link type="text/css" rel="stylesheet" href="css/doc.css" />
+	<script type="text/javascript" src="jslib/jquery/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="jslib/jquery-datetimepicker/jquery.datetimepicker.js"></script>
+</head>
+
+<body>
+	<div class="doc-wrapper">
+		<h1 class="doc-header">表单</h1>
+		<div class="doc-section">
+			<div class="doc-notice">表单实例1</div>
+			<div>
+				<table class="rhui-table rhui-table-field">
+					<tr>
+						<td style="width:80px;">客户号：</td>
+						<td style="width:250px;"><input type="text" class="rhui-field rhui-field-plain" /></td>
+						<td style="width:80px;">客户名称：</td>
+						<td style="width:250px;"><input type="text" class="rhui-field rhui-field-plain" /></td>
+					</tr>
+					<tr>
+						<td>客户类型：</td>
+						<td>
+							<select class="rhui-field rhui-field-plain">
+								<option>---请选择---</option>
+								<option>公司</option>
+								<option>个人</option>
+							</select>
+						</td>
+						<td>所属行业：</td>
+						<td><input type="text" class="rhui-field rhui-field-plain" /></td>
+					</tr>
+					<tr>
+						<td>注册类型：</td>
+						<td>
+							<input type="text" class="rhui-field rhui-field-plain rhui-field-disabled" disabled="disabled" value="工商" />
+						</td>
+						<td>所属行业：</td>
+						<td>
+							<input type="text" class="rhui-field rhui-field-plain rhui-field-disabled" readonly="readonly" value="手工业" />
+						</td>
+					</tr>
+					<tr>
+						<td>执照日期：</td>
+						<td>
+							<input type="text" class="rhui-field rhui-field-plain"  id="date1" />
+						</td>
+						<td>注册资金</td>
+						<td>
+							<select class="rhui-field rhui-field-plain">
+								<option>---请选择---</option>
+								<option>50万元</option>
+								<option>100万元</option>
+								<option>200万元</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align:top;">备注：</td>
+						<td colspan="3">
+							<textarea class="rhui-field rhui-field-plain" style="height:200px;"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="doc-section">
+			<div class="doc-notice">表单实例2</div>
+			<div>
+				<table class="rhui-table rhui-table-plain rhui-table-plain-field">
+					<tr>
+						<td style="width:80px;">客户号：</td>
+						<td style="width:250px;"><input type="text" class="rhui-field" /></td>
+						<td style="width:80px;">客户名称：</td>
+						<td style="width:250px;"><input type="text" class="rhui-field" /></td>
+					</tr>
+					<tr>
+						<td>客户类型：</td>
+						<td>
+							<select class="rhui-field">
+								<option>---请选择---</option>
+								<option>公司</option>
+								<option>个人</option>
+							</select>
+						</td>
+						<td>所属行业：</td>
+						<td><input type="text" class="rhui-field" /></td>
+					</tr>
+					<tr>
+						<td>注册类型：</td>
+						<td>
+							<input type="text" class="rhui-field rhui-field-disabled" disabled="disabled" value="工商" />
+						</td>
+						<td>所属行业：</td>
+						<td>
+							<input type="text" class="rhui-field rhui-field-disabled" readonly="readonly" value="手工业" />
+						</td>
+					</tr>
+					<tr>
+						<td>执照日期：</td>
+						<td>
+							<input type="text" class="rhui-field"  id="date2" />
+						</td>
+						<td>注册资金</td>
+						<td>
+							<select class="rhui-field" style="width:120px;">
+								<option>---请选择---</option>
+								<option>50万元</option>
+								<option>100万元</option>
+								<option>200万元</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align:top;">备注：</td>
+						<td colspan="3">
+							<textarea class="rhui-field" style="width:530px;height:200px;"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$('#date1').datetimepicker();
+			$('#date2').datetimepicker();
+		});
+	</script>
+</body>
+
+</html>

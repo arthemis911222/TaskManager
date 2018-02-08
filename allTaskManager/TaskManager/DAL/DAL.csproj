@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5381A05-8F93-4818-8F68-E637EF60CA0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TaskManager.DAL</RootNamespace>
+    <AssemblyName>TaskManager.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DALT_Base_Admin.cs" />
+    <Compile Include="DALT_Base_Class.cs" />
+    <Compile Include="DALT_Base_Student.cs" />
+    <Compile Include="DALT_Base_Teacher.cs" />
+    <Compile Include="DALT_ClassTask_Stu.cs" />
+    <Compile Include="DALT_ClassTask_Tea.cs" />
+    <Compile Include="DALT_Event_ClassTask.cs" />
+    <Compile Include="DALT_Event_CourseTask.cs" />
+    <Compile Include="DALT_Event_MyTask.cs" />
+    <Compile Include="DALT_StuClassTask.cs" />
+    <Compile Include="DALT_Task_Course.cs" />
+    <Compile Include="MyClass\DALT_Base_Admin.cs" />
+    <Compile Include="MyClass\DALT_Base_Class.cs" />
+    <Compile Include="MyClass\DALT_Base_Student.cs" />
+    <Compile Include="MyClass\DALT_Base_Teacher.cs" />
+    <Compile Include="MyClass\DALT_ClassTask_Stu.cs" />
+    <Compile Include="MyClass\DALT_ClassTask_Tea.cs" />
+    <Compile Include="MyClass\DALT_Event_ClassTask.cs" />
+    <Compile Include="MyClass\DALT_Event_CourseTask.cs" />
+    <Compile Include="MyClass\DALT_Event_MyTask.cs" />
+    <Compile Include="MyClass\DALT_Event_StuClassTask.cs" />
+    <Compile Include="MyClass\DALT_Task_Course.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBUtility\DBUtility.csproj">
+      <Project>{0988c62e-247f-471f-a183-db509c7a3839}</Project>
+      <Name>DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{2d4e22ac-d32f-440b-adb7-5389eaef882b}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

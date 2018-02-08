@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<div class="pageContent">
+    <form method="post" action="/Admin/Student/AddSave" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+        <div class="pageFormContent" layoutH="56">
+            <p>
+                <label>姓名：</label>
+                <input name="Name" type="text" size="30" />
+            </p>
+            <dl>
+                <dt>性别：</dt>
+                <dd class="form-group">
+                    <input type="radio" name="Sex" checked="checked" value="1" />   女
+                    <input type="radio" name="Sex" value="0" />    男
+                </dd>
+            </dl>
+            <p>
+                <label>学号：</label>
+                <input name="StuId" type="text" size="30" />
+            </p>
+            <p>
+                <label>电话：</label>
+                <input name="Phone" type="text" size="30" />
+            </p>
+            <dl>
+                <dt>是否班干部：</dt>
+                <dd class="form-group">
+                    <input type="radio" name="IsBGB" checked="checked" value="1" />   是
+                    <input type="radio" name="IsBGB" value="0" />    否
+                </dd>
+            </dl>
+            <dl>
+                <dt>是否课代表：</dt>
+                <dd class="form-group">
+                    <input type="radio" name="IsKDB" checked="checked" value="1" />   是
+                    <input type="radio" name="IsKDB" value="0" />    否
+                </dd>
+            </dl>
+            <p>
+                <label>班级：</label>
+                
+                    <input name="Class.Id" type="hidden" suggesturl="/Admin/Student/GetAllClass" lookupgroup="Class">
+                    <input class="required" name="Class.Name" id="Class.Id" type="text" postfield="keyword" suggestfields="Name,Id" suggesturl="/Admin/Student/GetAllClass" lookupgroup="Class"size="30">
+
+            </p>
+            
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">添加</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+

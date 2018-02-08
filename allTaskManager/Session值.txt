@@ -1,0 +1,12 @@
+Session["UserName"] ——名字
+Session["UserId"] ——数据库内Id
+Session["ClassId"]——班级
+
+Session["UserLevel"] —— 
+0：普通学生
+3：班干部+课代表
+2：只是班干部
+1：只是课代表    
+
+10：普通老师
+11：班主任 
